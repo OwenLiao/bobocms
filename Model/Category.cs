@@ -120,15 +120,7 @@ namespace Model
         }
         [Display(Name = "是否锁定")]
         public bool IsLock { set; get; }
-        /// <summary>
-        /// 此字段用于保存该分类下的关联细分。比如果园各个平台下对应的运营干货、平台规则。  用英文下的,号隔开。
-        /// </summary>
-        [Display(Name = "关联细分")]
-        public string CategoryRelation
-        {
-            get;
-            set;
-        }
+     
 
 
         /// <summary>
@@ -151,17 +143,13 @@ namespace Model
         [Display(Name = "创建时间")]
         public DateTime AddTime { get; set; }
 
-        /// <summary>
-        /// 文章详情细分下的文章
-        /// </summary>
 
-        public virtual ICollection<DetailArticleCategory> DetaileArticles { get; set; }
 
         /// <summary>
-        /// 文章列表细分下的文章
+        /// 文章的标签
         /// </summary>
+        public virtual ICollection<ArticleCategory> ArticleCategories { get; set; }
 
-        public virtual ICollection<ListArticleCategory> ListArticles { get; set; }
 
         /// <summary>
         /// 父标签
@@ -183,13 +171,6 @@ namespace Model
         /// </summary>
         public bool IsDeleted { get; set; }
 
-        /// <summary>
-        /// 标签不显示
-        /// </summary>
-        [Display(Name = "标签是否显示")]
-        public bool NotTagShow { get; set; }
 
-        [Display(Name = "文章底部微信公众号信息")]
-        public string ArticleBottomWechatHtml { get; set; }
     }
 }

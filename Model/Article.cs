@@ -23,8 +23,7 @@ namespace Model
             this.CommentCount = 0;
             this.ShareCount = 0;
             this.AddTime = DateTime.Now;
-            this.DetailCategories = new List<DetailArticleCategory>();
-            this.ListCategories = new List<ListArticleCategory>();
+            this.ArticleCategories = new List<ArticleCategory>();
         }
 
         /// <summary>
@@ -298,13 +297,10 @@ namespace Model
  
 
         /// <summary>
-        /// 文章的细分
+        /// 文章的标签
         /// </summary>
-        public virtual ICollection<DetailArticleCategory> DetailCategories { get; set; }
+        public virtual ICollection<ArticleCategory> ArticleCategories { get; set; }
 
-        /// <summary>
-        /// 列表显示的细分
-        /// </summary>
-        public virtual ICollection<ListArticleCategory> ListCategories { get; set; }
+
     }
 }

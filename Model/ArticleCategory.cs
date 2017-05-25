@@ -8,6 +8,6 @@
         public virtual Category Category { get; set; }
     }
 
-    public class DetailArticleCategory : ArticleCategory { }
-    public class ListArticleCategory : ArticleCategory { }
+    //public class DetailArticleCategory : ArticleCategory { }
+   // public class ListArticleCategory : ArticleCategory { }
 }
