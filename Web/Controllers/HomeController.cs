@@ -12,10 +12,14 @@ namespace Web.Controllers
     public class HomeController : Controller
     {
         MyDbContext context;
-        public IActionResult Index()
+        public HomeController( MyDbContext _context)
         {
-            context.Article.AsNoTracking();
-            return View();
+            context = _context;
+        }
+        public async Task< IActionResult> Index()
+        {
+            
+            return View(await context.Category.Where(q=>q.Id>1).ToListAsync());
         }
 
         public IActionResult About()
