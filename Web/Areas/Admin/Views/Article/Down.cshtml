@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "";
+}
+<div id="toolbar">
+    <div>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true" onclick="$('#data_list').datagrid('reload');">刷新</a>
+    </div>
+    <div class="form-inline">
+        <label>用户名</label>
+        @Html.TextBox("Title").ForSearch(QueryMethod.Like)
+        <a href="#" id="btn_search" data-options="iconCls:'icon-search'" class="easyui-linkbutton">查询</a>
+    </div>
+
+</div>
+<table id="data_list"></table>
+<script type="text/javascript">
+    var field = "Id,articleId,Title,DownNum,Point";
+    $("#data_list").datagrid({
+        loadMsg: '加载中……',
+        pagination: true,
+        pageSize: 15,
+        pageList: [15, 30, 45],
+        url: '@Url.Action("JsonListDown", "Article")',
+        queryParams: { fieldSelect: field },
+        columns: [[
+            { field: 'Id', title: 'ID', checkbox: true },
+            { field: 'articleId', title: '文章标题', formatter: function (value, row, index) { return "<a target='_blank' href='/article/" + value + "'>" + value + "</a>"; } },
+            { field: 'Title', title: '文件标题' },
+            { field: 'DownNum', title: '下载次数' },
+            { field: 'Point', title: '所需积分' }
+        ]],
+        toolbar: '#toolbar',
+        idField: 'Id'
+    });
+    //查找
+    $("#btn_search").click(function () {
+        $("#data_list").datagrid('load', {
+            "[Like]Title": $("#Title").val()
+        });
+    });
+</script>
+

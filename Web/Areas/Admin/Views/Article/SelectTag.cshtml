@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "SelectTag";
+}
+@model Article
+<div id="w" class="easyui-window" title="选择标签" data-options="modal:true,closed:true,iconCls:'icon-save'" style="width:500px;height:400px;padding:10px;">
+    <div class="easyui-layout" data-options="fit:true">
+        <div data-options="region:'center'" style="padding: 10px; overflow: auto;">
+            <ul id="tree" class="easyui-tree" style=""></ul>
+        </div>
+        <div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="getChecked(); $('.panel-tool-close').click()" style="width:80px">Ok</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="$('.panel-tool-close').click()" style="width:80px">Cancel</a>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    @{string actionUrl = Url.Action("JsonCategory") + (Model == null? "" : "/" + Model.Id);}
+    $(function () {
+        $('#tree').tree({
+            url: '@actionUrl',
+            checkbox: true,
+            onClick: function (node) {
+                //alert(node.text);
+            }
+        })
+
+    })
+    function getChecked() {
+        var nodes1 = $('#tree').tree('getChecked', 'indeterminate');
+        var nodes = $('#tree').tree('getChecked');
+        var s = '';
+        var v = '';
+        //for (var i = 0; i < nodes1.length; i++) {
+        //    if (s != '') s += ',';
+        //    if (v != '') v += ',';
+        //    s += nodes1[i].text;
+        //    v += nodes1[i].id;
+        //}
+        for (var i = 0; i < nodes.length; i++) {
+            if (s != '') s += ',';
+            if (v != '') v += ',';
+            s += nodes[i].text;
+            v += nodes[i].id;
+        }
+        //alert(s)
+        //alert(v)
+        $("#labText").html(s);
+        $('#txtVals').val(v);
+    }
+</script>

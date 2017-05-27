@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "";
+}
+<div id="toolbar">
+    <div>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add('添加文章', '@Url.Action("Edit")')">添加</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="eidt('修改文章', '@Url.Action("Edit")')">修改</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true" onclick="$('#data_list').datagrid('reload');">刷新</a>
+    </div>
+    <div class="form-inline">
+        <label>标题</label>
+        @Html.TextBox("Title").ForSearch(QueryMethod.Like)
+        <a href="#" id="btn_search" data-options="iconCls:'icon-search'" class="easyui-linkbutton">查询</a>
+    </div>
+
+</div>
+<table id="data_list"></table>
+<script type="text/javascript">
+    $("#data_list").datagrid({
+        loadMsg: '加载中……',
+        pagination: true,
+        pageSize: 15,
+        pageList: [15, 30, 45],
+        url: '@Url.Action("JsonList","Article")',
+        queryParams: { fieldSelect: "Id,Title,AddTime,SortId,Click" },
+        columns: [[
+            { field: 'Id', title: 'ID', checkbox: true },
+              { field: 'Ids', title: '主键', formatter: function (value, row, index) { return "<a href='article/'" + row.Id + ">" + row.Id + "</a>"; } },
+              { field: 'Title', title: '标题' },
+            { field: 'AddTime', title: '时间', width: 160, align: 'center' },
+            { field: 'SortId', title: '排序', width: 100, align: 'center' },
+            { field: 'Click', title: '阅读', width: 100, align: 'center' },
+            { field: 'SortId', title: '属性', width: 100, align: 'center' }
+        ]],
+        toolbar: '#toolbar',
+        idField: 'Id',
+        onDblClickRow: function (rowIndex, rowData) { window.parent.addTab("修改文章", "@Url.Action("Edit", "Article")/" + rowData.Id, "icon-page"); }
+    });
+    //查找
+    $("#btn_search").click(function () {
+        $("#data_list").datagrid('load', {
+            "[Like]Title": $("#Title").val(),
+            fieldSelect: "Id,Title,AddTime,SortId,Click"
+        });
+    });
+</script>

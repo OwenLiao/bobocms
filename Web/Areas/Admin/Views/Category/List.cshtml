@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "";
+    string callindex = Common.MyRequest.GetQueryString("callindex");
+}
+<div id="toolbar">
+    <div>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add('添加分类','Category','callindex=@callindex')">添加</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="eidt('修改分类', 'Category', 'callindex=@callindex')">修改</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true" onclick="$('#data_list').datagrid('reload');">刷新</a>
+    </div>
+    <div class="form-inline">
+        <label>标题</label>
+        @Html.TextBox("Title").ForSearch(QueryMethod.Like)
+        <a href="#" id="btn_search" data-options="iconCls:'icon-search'" class="easyui-linkbutton">查询</a>
+    </div>
+</div>
+<table id="data_list"></table>
+<script type="text/javascript">
+    $("#data_list").datagrid({
+        loadMsg: '加载中……',
+        pagination: true,
+        pageSize: 15,
+        pageList: [15, 30, 45],
+        url: '@Url.Action("JsonList")',//
+        columns: [[
+            { field: 'Id', title: 'ID', checkbox: true },
+            { field: 'Title', title: '标题' },
+            { field: 'CallIndex', title: '调用别名' },
+            { field: 'parentId', title: '上级分类', formatter: function (value, row, index) { return new Object(row["Parent"]).Title; } },
+            { field: 'categoryTypeId', title: '类型', formatter: function (value, row, index) { return new Object(row["CategoryType"]).Title; } },
+            { field: 'SortId', title: '排序' }
+        ]],
+        toolbar: '#toolbar',
+        idField: 'Id',
+        onDblClickRow: function (rowIndex, rowData) { window.parent.addTab("修改分类", "@Url.Action("Edit")/" + rowData.Id, "icon-page"); }
+    });
+    //查找
+    $("#btn_search").click(function () {
+        $("#data_list").datagrid('load', {
+            "[Like]Title": $("#Title").val()
+        });
+    });
+</script>
+

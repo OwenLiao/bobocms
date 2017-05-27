@@ -1,0 +1,310 @@
+﻿@section scripts
+{
+
+    @Scripts.Render("~/Scripts/jquery.form.js")
+
+    @Scripts.Render("~/Scripts/editor/kindeditor.js")
+    @Scripts.Render("~/Scripts/editor/lang/zh_CN.js")
+
+    @Scripts.Render("~/Scripts/webuploader/webuploader.min.js")
+    @Scripts.Render("~/Areas/Admin/Content/js/uploader.js")
+    @Scripts.Render("~/Scripts/jquery.tokeninput.min.js")
+
+    <script type="text/javascript">
+        //加载编辑器
+        $(function () {
+            var editor = KindEditor.create('textarea[name="Content"]', {
+                resizeType: 1,
+                uploadJson: '/Api/Upload/EditorFile?IsWater=1',
+                fileManagerJson: '/Api/Upload/ManagerFile',
+                allowFileManager: true,
+                items: [
+        'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+        'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+        'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+        'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+        'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+        'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+        'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+        'anchor', 'link', 'unlink', 'quote'
+                ]
+            });
+            ///tools/upload_ajax.ashx
+
+            //初始化上传控件
+            $(".upload-img").InitUploader({ filesize: "2048", sendurl: "/api/upload/UpLoadFile", swf: "/scripts/webuploader/uploader.swf", filetypes: "gif,jpg,png" });
+
+            $(function(){
+                //自动完成
+                $("#strArticleExtendReads").tokenInput('@Url.Action("GetArticle")', {
+                    theme: "facebook",
+                    excludeCurrent: true,
+                    hintText: "输入您要添加的标签！",
+                    noResultsText: "没有找到该标签，请重新输入",
+                    searchingText: "查询中...",
+                    prePopulate:@Html.Raw((Model != null && !string.IsNullOrEmpty(Model.strArticleExtendReads)) ? Model.strArticleExtendReads : "[]")
+                    });
+
+
+                //自动完成
+                $("#ArticleIds").tokenInput('@Url.Action("GetArticleShili")', {
+                    theme: "facebook",
+                    excludeCurrent: true,
+                    hintText: "输入您要添加的标签！",
+                    noResultsText: "没有找到该标签，请重新输入",
+                    searchingText: "查询中...",
+                    prePopulate:@Html.Raw((Model != null && !string.IsNullOrEmpty(Model.ArticleIds)) ? Model.ArticleIds : "[]")
+                    });
+            })
+
+        });
+
+        function GenerateArticle()
+        {
+            var val=$("#ArticleIds").val();
+            var id=$("#hidId").val();
+            $.ajax({
+                url: '@Url.Action("GetArticleShili1")',
+                type: "POST",
+                timeout: 60000,
+                data: {
+                    ids: function () {
+                        return val;
+                    },
+                    id:function(){
+                        return id;
+                    }
+                },
+                dataType: "json",
+                success: function (data) {
+                    $("#genContent").val(data.con.m_StringValue);
+                    $("#contentW3cplus").val(data.con1.m_StringValue);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("状态：" + textStatus + "；出错提示：" + errorThrown)
+                }
+            });
+        }
+
+    </script>
+
+
+}
+@model Model.Article
+@using (Html.BeginForm(Model == null ? "Add" : "Edit", "Article", FormMethod.Post, new { id = "form1" }))
+{ @Html.AntiForgeryToken()
+    <div class="form-horizontal" role="form">
+        <h4>@ViewBag.TitleMessage</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="easyui-tabs" style="width:99%;height:auto; overflow:hidden;">
+
+            <div title="基本信息" style="padding:10px">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Title)
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.Label("推荐类型", new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+
+                        原创 @Html.CheckBox("IsMsg", (Model != null && Model.IsMsg == true) ? true : false) &nbsp;&nbsp;
+                        推荐 @Html.CheckBox("IsRed", (Model != null && Model.IsRed == true) ? true : false) &nbsp;&nbsp;
+                        实例 @Html.CheckBox("IsHot", (Model != null && Model.IsHot == true) ? true : false)  &nbsp;&nbsp;
+                        幻灯 @Html.CheckBox("IsSlide", (Model != null && Model.IsSlide == true) ? true : false)  &nbsp;&nbsp;
+                        隐藏 @Html.CheckBox("IsLock", (Model != null && Model.IsLock == true) ? true : false)
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.categoryId, new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(model => model.categoryId, ViewBag.Category as SelectList, "---请选择---")
+
+                        @Html.ValidationMessageFor(model => model.categoryId)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.categoryNavId, new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.DropDownListFor(model => model.categoryNavId, ViewBag.CategoryNav as SelectList, "---请选择---")
+
+                        @Html.ValidationMessageFor(model => model.categoryNavId)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("标签", new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        <input type="hidden" id="txtVals" name="txtVals" value="@ViewBag.TagValue " />
+                        <label id="labText" style="font-weight:normal">@ViewBag.TagText</label>
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#w').window('open')">选择</a>
+                        @{Html.RenderPartial("SelectTag", Model);}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.From, new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.From, new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.From)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.VisitUrl, new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.VisitUrl, new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.VisitUrl)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ImgUrl, new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.ImgUrl, new { @class = "form-control upload-path", @style = "width:300px;" })
+
+                        <div class="upload-box upload-img"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LinkUrl, new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.LinkUrl, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LinkUrl)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("上传附件", new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#attach').window('open')">上传附件</a>
+                        <div id="showAttachList" class="attach-list">
+                            <ul>
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model.DownloadAttachs)
+                                    {
+                                        <li>
+                                            <input name="hid_attach_id" type="hidden" value="@item.Id">
+                                            <input name="hid_attach_filename" type="hidden" value="@item.Title">
+                                            <input name="hid_attach_filepath" type="hidden" value="@item.FilePath">
+                                            <input name="hid_attach_filesize" type="hidden" value="@item.FileSize">
+                                            <i class="icon"></i>
+                                            <a href="javascript:;" onclick="delAttachNode(this);" class="del" title="删除附件"></a>
+                                            <a href="javascript:;" onclick="showAttachDialog(this);" class="edit" title="更新附件"></a>
+                                            <div class="title">@item.Title</div><div class="info">
+                                                类型：<span class="ext">@item.FileExt</span>
+                                                大小：<span class="size">@item.FileSize KB</span>
+                                                下载：<span class="down">@item.DownNum</span>次
+                                            </div><div class="btns">
+                                                下载积分：<input type="text" name="txt_attach_point" onkeydown="return checkNumber(event);" value="@item.Point">
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        @Html.Partial("DialogAttach")
+                    </div>
+                </div>
+            </div>
+
+            <div title="详细描述" style="padding:10px">
+                @Html.LabelFor(model => model.Content, new { @class = "control-label col-sm-1" })
+                <div class="col-sm-11">
+                    @Html.TextAreaFor(model => model.Content, new { @class = "form-control", @style = "width: 99%; height: 450px; visibility: hidden;" })
+                    @Html.ValidationMessageFor(model => model.Content)
+                </div>
+            </div>
+            <div title="SEO选项" style="padding:10px">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SeoTitle, new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.SeoTitle, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SeoTitle)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SeoKeywords, new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.SeoKeywords, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SeoKeywords)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SeoDescription, new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.SeoDescription, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SeoDescription)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Author, new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.Author, new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.Author)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ZhaiYao, new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.ZhaiYao, new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.ZhaiYao)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SortId, new { @class = "control-label col-sm-2" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.SortId, new { @class = "form-control", @Value = "99" })
+                        @Html.ValidationMessageFor(model => model.SortId)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.strArticleExtendReads, new { @class = "control-label col-sm-2" })
+
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.strArticleExtendReads, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.strArticleExtendReads)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2">集合文章生成</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.ArticleIds, new { @class = "form-control" })
+                        @*<input name="txtArticleGenerate" id="txtArticleGenerate" type="text" class="form-control" />*@
+                        <input type="button" value="生成" onclick=" GenerateArticle()" /><br />
+                        <textarea id="genContent" cols="100" rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div title="博客同步" style="padding:10px">
+                <div class="form-group">
+                    <label class="control-label col-sm-2">w3cplus</label>
+                    <div class="col-sm-10">
+                        是否同步：<input type="checkbox" name="IsW3cplus" /><br />
+                        cookie：<input type="text" name="cookieW3cplus" value="" /><br />
+                        <textarea cols="100" rows="6" name="contentW3cplus" id="contentW3cplus"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="保存" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}

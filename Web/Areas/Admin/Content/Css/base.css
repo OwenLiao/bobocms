@@ -1,0 +1,248 @@
+﻿* {
+    scrollbar-face-color: #E6F2FD;
+    scrollbar-highlight-color: #ffffff;
+    scrollbar-shadow-color: #D6E4EF;
+    scrollbar-3dlight-color: #F1F9FF;
+    scrollbar-arrow-color: #006699;
+    scrollbar-track-color: #F1F9FF;
+    scrollbar-darkshadow-color: #F1F9FF;
+}
+
+body {
+    margin: 0px;
+    color: #414141;
+    font-size: 12px;
+
+}
+
+form, ul, li, dl, dt, dd {
+    margin: 0px;
+    list-style-type: none;
+    padding: 0px;
+}
+
+table {
+    empty-cells: show;
+    border-collapse: collapse;
+}
+
+img {
+    border: 0px;
+    vertical-align: middle;
+}
+
+a {
+    color: #005eac;
+    text-decoration: none;
+}
+
+    a:visited, a:active {
+        color: #005eac;
+    }
+
+    a:hover {
+        color: #ff5500;
+    }
+
+#css3menu {
+display:none;
+}
+    #css3menu li {
+float: left;
+list-style-type: none;
+ margin-left:15px;
+}
+    #css3menu li a.active {
+color:#ff5500;
+}
+#wnav li {
+    list-style: none;
+}
+
+#wnav ul li a {
+    height: 30px;
+    line-height: 30px;
+    display: block;
+}
+
+    #wnav ul li a:hover {
+        background: #EFEFEF;
+    }
+
+body {
+}
+
+select
+{
+     height:30px;
+     border:1px solid #ccc;
+     min-width:180px;   
+}
+.form-control {
+  width:400px;
+   display:inline-block;
+}
+
+.field-validation-error {
+ color:#BB3E3B;
+ display:inline;
+}
+.panel-body {
+overflow:hidden;
+}
+.form-horizontal .form-group { 
+     margin-left:0;
+      margin-right:0;
+}
+
+.upload-box {
+  position: relative;
+  display: inline-block;
+  height: 32px;
+  vertical-align: middle;
+  zoom: 1;
+}
+.upload-box .upload-btn {
+  display: inline-block;
+  height: 32px;
+  zoom: 1;
+}
+.webuploader-pick {
+  position: relative;
+  display: inline-block;
+  width: 65px;
+  line-height: 30px;
+  height: 30px;
+  border: 1px solid #e1e1e1;
+  cursor: pointer;
+  background: #fff;
+  color: #333;
+  text-align: center;
+  overflow: hidden;
+  zoom: 1;
+}
+.webuploader-pick-hover {
+  background: #fafafa;
+}
+.webuploader-element-invisible {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px,1px,1px,1px);
+}
+.upload-box {
+  position: relative;
+  display: inline-block;
+  height: 32px;
+  vertical-align: middle;
+  zoom: 1;
+}
+.upload-box .upload-btn {
+  display: inline-block;
+  height: 32px;
+  zoom: 1;
+}
+.webuploader-pick {
+  position: relative;
+  display: inline-block;
+  width: 65px;
+  line-height: 30px;
+  height: 30px;
+  border: 1px solid #e1e1e1;
+  cursor: pointer;
+  background: #fff;
+  color: #333;
+  text-align: center;
+  overflow: hidden;
+  zoom: 1;
+}
+.webuploader-pick-hover {
+  background: #fafafa;
+}
+.webuploader-element-invisible {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px,1px,1px,1px);
+}
+
+
+.attach-list {
+margin: 0;
+padding: 10px 0 0 0;
+}
+.attach-list ul li {
+position: relative;
+float: left;
+margin: 0 0 15px 15px;
+padding: 5px 18px 8px 18px;
+border: 1px solid #eee;
+box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.1);
+width: 215px;
+}
+.attach-list ul li .icon {
+position: absolute;
+display: block;
+top: 8px;
+left: 2px;
+width: 14px;
+height: 14px;
+text-indent: -999em;
+background: url(../Images/skin_icons.png) no-repeat -84px -140px;
+overflow: hidden;
+}
+.attach-list ul li .del {
+position: absolute;
+display: block;
+top: 0;
+right: 0;
+width: 20px;
+height: 20px;
+text-indent: -99em;
+background: url(../Images/skin_icons.png) no-repeat -53px -193px;
+cursor: pointer;
+overflow: hidden;
+}
+
+.attach-list ul li .edit {
+position: absolute;
+display: block;
+bottom: 6px;
+right: 5px;
+width: 20px;
+height: 20px;
+text-indent: -99em;
+background: url(../Images/skin_icons.png) -137px -81px no-repeat;
+cursor: pointer;
+overflow: hidden;
+}
+.attach-list ul li .title {
+display: block;
+margin-bottom: 3px;
+border-bottom: 1px solid #ccc;
+line-height: 24px;
+height: 26px;
+font-weight: bold;
+white-space: nowrap;
+word-break: break-all;
+overflow: hidden;
+}
+.attach-list ul li .btns input {
+display: inline-block;
+padding: 0 3px;
+border: 1px solid #d7d7d7;
+width: 40px;
+height: 20px;
+line-height: 18px;
+color: #666;
+font-size: 12px;
+background: #fff;
+vertical-align: middle;
+}
+
+/*上传样式*/
+.upload-box{ position:relative; display:inline-block; height:32px; vertical-align:middle; zoom:1; *display:inline;}
+	.upload-box .upload-btn{ display:inline-block; height:32px; zoom:1; *display:inline; }
+	.upload-box .upload-progress{ position:absolute; top:0; left:0; padding:2px 5px; width:115px; height:26px; border:1px solid #d7d7d7; background:#fff; overflow:hidden; }
+	.upload-box .upload-progress .txt{ display:block; padding-right:10px; font-weight:normal; font-style:normal; font-size:11px; line-height:18px; height:18px; text-overflow:ellipsis; overflow:hidden; }
+	.upload-box .upload-progress .bar{ position:relative; display:block; width:112px; height:4px; border:1px solid #1da76b; }
+	.upload-box .upload-progress .bar b{ display:block; width:0%; height:4px; font-weight:normal; text-indent:-99em; background:#28B779; overflow:hidden; }
+	.upload-box .upload-progress .close{ position:absolute; display:block; top:1px; right:1px; width:14px; height:14px; text-indent:-99em; background:url(skin_icons.png) -56px -196px no-repeat; cursor:pointer; overflow:hidden; }

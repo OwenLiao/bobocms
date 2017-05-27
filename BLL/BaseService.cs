@@ -12,13 +12,14 @@ using System.Collections;
 
 namespace BLL
 {
-    public abstract class BaseService<T>:IBaseService<T> where T : class
+    // public abstract class BaseService<T>:IBaseService<T> where T : class
+    public abstract class BaseService<T> where T : class
     {
-        private static readonly object syncRoot = new Object();
+        
 
-        protected IBaseRepository<T> baseRepository;
+        protected BaseRepository<T> baseRepository;
    
-        public BaseService(IBaseRepository<T> _baseRepository)
+        public BaseService(BaseRepository<T> _baseRepository)
         {
             baseRepository = _baseRepository;
         }

@@ -12,9 +12,11 @@ namespace Web.Controllers
     public class HomeController : Controller
     {
         MyDbContext context;
-        public HomeController( MyDbContext _context)
+        BLL.BaseService<Category> bllCate;
+        public HomeController( MyDbContext _context, BLL.BaseService<Category> _bllCate)
         {
             context = _context;
+            bllCate = _bllCate;
         }
         public async Task< IActionResult> Index()
         {
@@ -22,11 +24,14 @@ namespace Web.Controllers
             return View(await context.Category.Where(q=>q.Id>1).ToListAsync());
         }
 
+
+
         public IActionResult About()
         {
+            bllCate.GetList(q=>q.Id>0);
             ViewData["Message"] = "Your application description page.";
 
-            return View();
+            return View(bllCate.GetList(q => q.Id > 0));
         }
 
         public IActionResult Contact()

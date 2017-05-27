@@ -15,7 +15,8 @@ namespace DAL
     /// <summary>
     /// 仓储基类
     /// </summary>
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
+    //public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
+    public abstract class BaseRepository<T>  where T : class
     {
         protected MyDbContext nContext;
         public BaseRepository(MyDbContext _context)

@@ -22,9 +22,5 @@
     <ProjectReference Include="..\BLL\BLL.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Controllers\" />
-    <Folder Include="Areas\Admin\Views\" />
-  </ItemGroup>
 
 </Project>
