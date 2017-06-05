@@ -1,12 +1,12 @@
 ﻿@{
     ViewData["Title"] = "About";
 }
-@model IEnumerable<Model.Category>
+@model Model.Category
 
-@foreach (var item in Model)
-{
-    <h2>@item.Title  @item.Id</h2>
-}
+@*@foreach (var item in Model)
+{*@
+    <h2>@Model.Title  @Model.Id</h2>
+@*}*@
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 

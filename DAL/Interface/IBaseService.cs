@@ -12,7 +12,7 @@ namespace DAL
     /// 接口基类
     /// </summary>
     /// <typeparam name="T">类型</typeparam>
-    public interface IBaseRepository<T>
+    public interface IBaseService<T> where T:class,new()
     {
         /// <summary>
         /// 数据实体列表
@@ -71,21 +71,21 @@ namespace DAL
         /// </summary>
         /// <param name="Id">主键</param>
         /// <returns>实体</returns>
-        T Find(int Id);
+        T GetModel(int Id);
 
         /// <summary>
         /// 查询数据 
         /// </summary>
         /// <param name="whereLambda">条件表达式</param>
         /// <returns>实体</returns>
-        T Find(Expression<Func<T, bool>> whereLambda);
+        T GetModel(Expression<Func<T, bool>> whereLambda);
 
         /// <summary>
         /// 查询数据
         /// </summary>
         /// <param name="whereLamdba">查询表达式</param>
         /// <returns>实体集合</returns>
-       Task<IQueryable<T>>  FindList(Expression<Func<T, bool>> whereLamdba);
+       IQueryable<T>  GetList(Expression<Func<T, bool>> whereLamdba);
 
         /// <summary>
         /// 查询数据
@@ -94,7 +94,7 @@ namespace DAL
         /// <param name="orderName">排序字段</param>
         /// <param name="isAsc">是否正序</param>
         /// <returns>实体集合</returns>
-        IQueryable<T> FindList(Expression<Func<T, bool>> whereLamdba, string orderName, bool isAsc);
+        IQueryable<T> GetList(Expression<Func<T, bool>> whereLamdba, string orderName, bool isAsc);
 
         /// <summary>
         /// 查询Top(n)实体
@@ -104,7 +104,7 @@ namespace DAL
         /// <param name="orderName">排序字段</param>
         /// <param name="isAsc">是否正序</param>
         /// <returns>实体集合</returns>
-        IQueryable<T> FindList(int top, Expression<Func<T, bool>> whereLamdba, string orderName, bool isAsc);
+        IQueryable<T> GetList(int top, Expression<Func<T, bool>> whereLamdba, string orderName, bool isAsc);
 
         /// <summary>
         /// 分页查询数据(查询表达式基于linq表达式)
@@ -116,7 +116,7 @@ namespace DAL
         /// <param name="isAsc">是否正序</param>
         /// <param name="totalRecord">总记录数</param>
         /// <returns>实体集合</returns>
-        IQueryable<T> FindPageList(int pageSize, int pageIndex, Expression<Func<T, bool>> whereLamdba, string orderName, bool isAsc, out int totalRecord);
+        IQueryable<T> GetList(int pageSize, int pageIndex, Expression<Func<T, bool>> whereLamdba, string orderName, bool isAsc, out int totalRecord);
 
         /// <summary>
         /// 分页查询数据(查询表达式基于EfSearchModel表达式)

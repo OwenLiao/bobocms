@@ -15,8 +15,8 @@ namespace DAL
     /// <summary>
     /// 仓储基类
     /// </summary>
-    //public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
-    public abstract class BaseRepository<T>  where T : class
+    public  class BaseRepository<T> : IBaseService<T> where T : class,new()
+  //  public  class BaseRepository<T>  where T : class
     {
         protected MyDbContext nContext;
         public BaseRepository(MyDbContext _context)
@@ -67,22 +67,21 @@ namespace DAL
             return nContext.SaveChanges();
         }
 
-        public T Find(int Id)
+        public T GetModel(int Id)
         {
             return nContext.Set<T>().Find(Id);
         }
 
-        public T Find(Expression<Func<T, bool>> whereLambda)
+        public T GetModel(Expression<Func<T, bool>> whereLambda)
         {
             T _entity = nContext.Set<T>().FirstOrDefault<T>(whereLambda);
             return _entity;
         }
 
-        public async Task<IQueryable<T>> FindList(Expression<Func<T, bool>> whereLamdba)
+        public  IQueryable<T> GetList(Expression<Func<T, bool>> whereLamdba)
         {
-            //  var _list = nContext.Set<T>().Where<T>(whereLamdba);
-            //  return _list;
-          return await  nContext.FindAsync<IQueryable<T>>(whereLamdba);
+            var _list = nContext.Set<T>().Where<T>(whereLamdba);
+            return _list;
         }
 
         //public IQueryable<T> FindList(Expression<Func<T, bool>> whereLamdba,)
@@ -91,21 +90,21 @@ namespace DAL
         //    return _list;
         //}
 
-        public IQueryable<T> FindList(Expression<Func<T, bool>> whereLamdba, string orderName, bool isAsc)
+        public IQueryable<T> GetList(Expression<Func<T, bool>> whereLamdba, string orderName, bool isAsc)
         {
             var _list = nContext.Set<T>().Where<T>(whereLamdba);
             _list = OrderBy(_list, orderName, isAsc);
             return _list;
         }
 
-        public IQueryable<T> FindList(int top, Expression<Func<T, bool>> whereLamdba, string orderName, bool isAsc)
+        public IQueryable<T> GetList(int top, Expression<Func<T, bool>> whereLamdba, string orderName, bool isAsc)
         {
             var _list = nContext.Set<T>().Where<T>(whereLamdba);
             _list = OrderBy(_list, orderName, isAsc).Take<T>(top);
             return _list;
         }
 
-        public IQueryable<T> FindPageList(int pageSize, int pageIndex, Expression<Func<T, bool>> whereLamdba, string orderName, bool isAsc, out int totalRecord)
+        public IQueryable<T> GetList(int pageSize, int pageIndex, Expression<Func<T, bool>> whereLamdba, string orderName, bool isAsc, out int totalRecord)
         {
             var _list = nContext.Set<T>().Where<T>(whereLamdba);
             totalRecord = _list.Count();

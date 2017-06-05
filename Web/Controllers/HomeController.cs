@@ -11,27 +11,26 @@ namespace Web.Controllers
 {
     public class HomeController : Controller
     {
-        MyDbContext context;
-        BLL.BaseService<Category> bllCate;
-        public HomeController( MyDbContext _context, BLL.BaseService<Category> _bllCate)
+ 
+        DAL.ICategoryService bllCate;
+        public HomeController( MyDbContext _context, DAL.ICategoryService _bllCate) //, BLL.BaseService<Category> _bllCat
         {
-            context = _context;
             bllCate = _bllCate;
         }
-        public async Task< IActionResult> Index()
+        public   IActionResult Index()
         {
             
-            return View(await context.Category.Where(q=>q.Id>1).ToListAsync());
+            return View( bllCate.GetList(q=>q.Id>0));
         }
 
 
 
         public IActionResult About()
         {
-            bllCate.GetList(q=>q.Id>0);
+            bllCate.GetModel(q=>q.Id>0);
             ViewData["Message"] = "Your application description page.";
 
-            return View(bllCate.GetList(q => q.Id > 0));
+            return View(bllCate.GetModel(q => q.Id > 0));
         }
 
         public IActionResult Contact()

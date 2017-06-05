@@ -33,6 +33,14 @@ namespace Web
             // Add framework services.
             services.AddDbContext<MyDbContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+
+            // Repositories
+     
+            services.AddScoped<ICategoryService,CategoryService>();
+ 
+
+            // Automapper Configuration
+          //  AutoMapperConfiguration.Configure();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
