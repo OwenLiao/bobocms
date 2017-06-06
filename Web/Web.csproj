@@ -26,5 +26,8 @@
     <ProjectReference Include="..\DAL\DAL.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Views\Home\" />
+  </ItemGroup>
 
 </Project>
