@@ -1,4 +1,4 @@
-
+ï»¿
 
 
 
@@ -10,6 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
 
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
     @Styles.Render("~/Scripts/easyui/themes/icon.css")
     @Styles.Render("~/Scripts/easyui/themes/bootstrap/easyui.css")
     @Scripts.Render("~/bundles/jquery", "~/bundles/easyui")
@@ -34,7 +36,7 @@
                 InitLeftMenu();
             });
 
-            // µ¼º½²Ëµ¥°ó¶¨³õÊ¼»¯
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ó¶¨³ï¿½Ê¼ï¿½ï¿½
             $("#wnav").accordion({
                 animate: false
             });
@@ -88,7 +90,7 @@
 
         }
 
-        // ³õÊ¼»¯×ó²à
+        // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½
         function InitLeftMenu() {
 
             hoverMenuItem();
@@ -108,7 +110,7 @@
         }
 
         /**
-         * ²Ëµ¥ÏîÊó±êHover
+         * ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Hover
          */
         function hoverMenuItem() {
             $(".easyui-accordion").find('a').hover(function () {
@@ -118,7 +120,7 @@
             });
         }
 
-        // »ñÈ¡×ó²àµ¼º½µÄÍ¼±ê
+        // ï¿½ï¿½È¡ï¿½ï¿½àµ¼ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½
         function getIcon(menuid) {
             var icon = 'icon ';
             $.each(_menus, function (i, n) {
@@ -155,12 +157,12 @@
         }
 
         function tabClose() {
-            /* Ë«»÷¹Ø±ÕTABÑ¡Ïî¿¨ */
+            /* Ë«ï¿½ï¿½ï¿½Ø±ï¿½TABÑ¡ï¿½î¿¨ */
             $(".tabs-inner").dblclick(function () {
                 var subtitle = $(this).children(".tabs-closable").text();
                 $('#tabs').tabs('close', subtitle);
             });
-            /* ÎªÑ¡Ïî¿¨°ó¶¨ÓÒ¼ü */
+            /* ÎªÑ¡ï¿½î¿¨ï¿½ï¿½ï¿½Ò¼ï¿½ */
             $(".tabs-inner").bind('contextmenu', function (e) {
                 $('#mm').menu('show', {
                     left: e.pageX,
@@ -174,9 +176,9 @@
                 return false;
             });
         }
-        // °ó¶¨ÓÒ¼ü²Ëµ¥ÊÂ¼þ
+        // ï¿½ï¿½ï¿½Ò¼ï¿½ï¿½Ëµï¿½ï¿½Â¼ï¿½
         function tabCloseEven() {
-            // Ë¢ÐÂ
+            // Ë¢ï¿½ï¿½
             $('#mm-tabupdate').click(function () {
                 var currTab = $('#tabs').tabs('getSelected');
                 var url = $(currTab.panel('options').content).attr('src');
@@ -187,29 +189,29 @@
                     }
                 });
             });
-            // ¹Ø±Õµ±Ç°
+            // ï¿½Ø±Õµï¿½Ç°
             $('#mm-tabclose').click(function () {
                 var currtab_title = $('#mm').data("currtab");
                 $('#tabs').tabs('close', currtab_title);
             });
-            // È«²¿¹Ø±Õ
+            // È«ï¿½ï¿½ï¿½Ø±ï¿½
             $('#mm-tabcloseall').click(function () {
                 $('.tabs-inner span').each(function (i, n) {
                     var t = $(n).text();
                     $('#tabs').tabs('close', t);
                 });
             });
-            // ¹Ø±Õ³ýµ±Ç°Ö®ÍâµÄTAB
+            // ï¿½Ø±Õ³ï¿½ï¿½ï¿½Ç°Ö®ï¿½ï¿½ï¿½TAB
             $('#mm-tabcloseother').click(function () {
                 $('#mm-tabcloseright').click();
                 $('#mm-tabcloseleft').click();
             });
-            // ¹Ø±Õµ±Ç°ÓÒ²àµÄTAB
+            // ï¿½Ø±Õµï¿½Ç°ï¿½Ò²ï¿½ï¿½TAB
             $('#mm-tabcloseright').click(function () {
                 var nextall = $('.tabs-selected').nextAll();
                 if (nextall.length == 0) {
-                    // msgShow('ÏµÍ³ÌáÊ¾','ºó±ßÃ»ÓÐÀ²~~','error');
-                    alert('ºó±ßÃ»ÓÐÀ²~~');
+                    // msgShow('ÏµÍ³ï¿½ï¿½Ê¾','ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½~~','error');
+                    alert('ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½~~');
                     return false;
                 }
                 nextall.each(function (i, n) {
@@ -218,11 +220,11 @@
                 });
                 return false;
             });
-            // ¹Ø±Õµ±Ç°×ó²àµÄTAB
+            // ï¿½Ø±Õµï¿½Ç°ï¿½ï¿½ï¿½ï¿½TAB
             $('#mm-tabcloseleft').click(function () {
                 var prevall = $('.tabs-selected').prevAll();
                 if (prevall.length == 0) {
-                    alert('µ½Í·ÁË£¬Ç°±ßÃ»ÓÐÀ²~~');
+                    alert('ï¿½ï¿½Í·ï¿½Ë£ï¿½Ç°ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½~~');
                     return false;
                 }
                 prevall.each(function (i, n) {
@@ -232,18 +234,18 @@
                 return false;
             });
 
-            // ÍË³ö
+            // ï¿½Ë³ï¿½
             $("#mm-exit").click(function () {
                 $('#mm').menu('hide');
             });
         }
 
-        // µ¯³öÐÅÏ¢´°¿Ú title:±êÌâ msgString:ÌáÊ¾ÐÅÏ¢ msgType:ÐÅÏ¢ÀàÐÍ [error,info,question,warning]
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ title:ï¿½ï¿½ï¿½ï¿½ msgString:ï¿½ï¿½Ê¾ï¿½ï¿½Ï¢ msgType:ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ [error,info,question,warning]
         function msgShow(title, msgString, msgType) {
             $.messager.alert(title, msgString, msgType);
         }
 
-        // ±¾µØÊ±ÖÓ
+        // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
         function clockon() {
             var now = new Date();
             var year = now.getFullYear(); // getFullYear getYear
@@ -265,10 +267,10 @@
                 minu = "0" + minu;
             if (sec < 10)
                 sec = "0" + sec;
-            var arr_week = new Array("ÐÇÆÚÈÕ", "ÐÇÆÚÒ»", "ÐÇÆÚ¶þ", "ÐÇÆÚÈý", "ÐÇÆÚËÄ", "ÐÇÆÚÎå", "ÐÇÆÚÁù");
+            var arr_week = new Array("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½Ò»", "ï¿½ï¿½ï¿½Ú¶ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
             week = arr_week[day];
             var time = "";
-            time = year + "Äê" + month + "ÔÂ" + date + "ÈÕ" + " " + hour + ":" + minu
+            time = year + "ï¿½ï¿½" + month + "ï¿½ï¿½" + date + "ï¿½ï¿½" + " " + hour + ":" + minu
                     + ":" + sec + " " + week;
 
             $("#bgclock").html(time);
@@ -285,45 +287,45 @@
             basic: [{
                 "menuid": "10",
                 "icon": "icon-sys",
-                "menuname": "»ù´¡Êý¾Ý",
+                "menuname": "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
                 "menus": [{
                     "menuid": "111",
-                    "menuname": "»ù´¡Êý¾Ý1",
+                    "menuname": "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1",
                     "icon": "icon-nav",
                     "url": "#"
                 }, {
                     "menuid": "113",
-                    "menuname": "»ù´¡Êý¾Ý12",
+                    "menuname": "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½12",
                     "icon": "icon-nav",
                     "url": "#"
                 }, {
                     "menuid": "115",
-                    "menuname": "»ù´¡Êý¾Ý13",
+                    "menuname": "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½13",
                     "icon": "icon-nav",
                     "url": "#"
                 }, {
                     "menuid": "117",
-                    "menuname": "»ù´¡Êý¾Ý14",
+                    "menuname": "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½14",
                     "icon": "icon-nav",
                     "url": "#"
                 }, {
                     "menuid": "119",
-                    "menuname": "»ù´¡Êý¾Ý15",
+                    "menuname": "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½15",
                     "icon": "icon-nav",
                     "url": "em/enterpriseChannelObtend.action"
                 }]
             }, {
                 "menuid": "20",
                 "icon": "icon-sys",
-                "menuname": "²âÊÔÒ»",
+                "menuname": "ï¿½ï¿½ï¿½ï¿½Ò»",
                 "menus": [{
                     "menuid": "211",
-                    "menuname": "²âÊÔÒ»11",
+                    "menuname": "ï¿½ï¿½ï¿½ï¿½Ò»11",
                     "icon": "icon-nav",
                     "url": "#"
                 }, {
                     "menuid": "213",
-                    "menuname": "²âÊÔÒ»22",
+                    "menuname": "ï¿½ï¿½ï¿½ï¿½Ò»22",
                     "icon": "icon-nav",
                     "url": "#"
                 }]
@@ -331,25 +333,25 @@
             point: [{
                 "menuid": "20",
                 "icon": "icon-sys",
-                "menuname": "»ý·Ö¹ÜÀí",
+                "menuname": "ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½",
                 "menus": [{
                     "menuid": "211",
-                    "menuname": "»ý·ÖÓÃÍ¾",
+                    "menuname": "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¾",
                     "icon": "icon-nav",
                     "url": "#"
                 }, {
                     "menuid": "213",
-                    "menuname": "»ý·Öµ÷Õû",
+                    "menuname": "ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½",
                     "icon": "icon-nav",
                     "url": "#"
                 }]
 
             }]
         };
-        //ÉèÖÃµÇÂ¼´°¿Ú
+        //ï¿½ï¿½ï¿½Ãµï¿½Â¼ï¿½ï¿½ï¿½ï¿½
         function openPwd() {
             $('#w').window({
-                title: 'ÐÞ¸ÄÃÜÂë',
+                title: 'ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½',
                 width: 300,
                 modal: true,
                 shadow: true,
@@ -358,34 +360,34 @@
                 resizable: false
             });
         }
-        //¹Ø±ÕµÇÂ¼´°¿Ú
+        //ï¿½Ø±Õµï¿½Â¼ï¿½ï¿½ï¿½ï¿½
         function closePwd() {
             $('#w').window('close');
         }
 
 
 
-        //ÐÞ¸ÄÃÜÂë
+        //ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½
         function serverLogin() {
             var $newpass = $('#txtNewPass');
             var $rePass = $('#txtRePass');
 
             if ($newpass.val() == '') {
-                msgShow('ÏµÍ³ÌáÊ¾', 'ÇëÊäÈëÃÜÂë£¡', 'warning');
+                msgShow('ÏµÍ³ï¿½ï¿½Ê¾', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¡', 'warning');
                 return false;
             }
             if ($rePass.val() == '') {
-                msgShow('ÏµÍ³ÌáÊ¾', 'ÇëÔÚÒ»´ÎÊäÈëÃÜÂë£¡', 'warning');
+                msgShow('ÏµÍ³ï¿½ï¿½Ê¾', 'ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¡', 'warning');
                 return false;
             }
 
             if ($newpass.val() != $rePass.val()) {
-                msgShow('ÏµÍ³ÌáÊ¾', 'Á½´ÎÃÜÂë²»Ò»ÖÁ£¡ÇëÖØÐÂÊäÈë', 'warning');
+                msgShow('ÏµÍ³ï¿½ï¿½Ê¾', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë²»Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½', 'warning');
                 return false;
             }
 
             $.post('/ajax/editpassword.ashx?newpass=' + $newpass.val(), function (msg) {
-                msgShow('ÏµÍ³ÌáÊ¾', '¹§Ï²£¬ÃÜÂëÐÞ¸Ä³É¹¦£¡<br>ÄúµÄÐÂÃÜÂëÎª£º' + msg, 'info');
+                msgShow('ÏµÍ³ï¿½ï¿½Ê¾', 'ï¿½ï¿½Ï²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸Ä³É¹ï¿½ï¿½ï¿½<br>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½' + msg, 'info');
                 $newpass.val('');
                 $rePass.val('');
                 close();
@@ -408,7 +410,7 @@
             $('#btnCancel').click(function () { closePwd(); })
 
             $('#loginOut').click(function () {
-                $.messager.confirm('ÏµÍ³ÌáÊ¾', 'ÄúÈ·¶¨ÒªÍË³ö±¾´ÎµÇÂ¼Âð?', function (r) {
+                $.messager.confirm('ÏµÍ³ï¿½ï¿½Ê¾', 'ï¿½ï¿½È·ï¿½ï¿½Òªï¿½Ë³ï¿½ï¿½ï¿½ï¿½Îµï¿½Â¼ï¿½ï¿½?', function (r) {
 
                     if (r) {
                         location.href = '/ajax/loginout.ashx';
@@ -423,28 +425,28 @@
 
 
     <div region="north" split="true" border="false" style="height:60px;background:#B3DFDA;padding:10px">
-        <span style="float:right; padding-right:20px;" class="head">»¶Ó­ ·è¿ñÐã²Å <a href="#" id="editpass">ÐÞ¸ÄÃÜÂë</a> <a href="#" id="loginOut">°²È«ÍË³ö</a></span>
+        <span style="float:right; padding-right:20px;" class="head">ï¿½ï¿½Ó­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ <a href="#" id="editpass">ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½</a> <a href="#" id="loginOut">ï¿½ï¿½È«ï¿½Ë³ï¿½</a></span>
 
-        <span style="padding-left:10px; font-size: 16px; float:left;"><img src="" width="20" height="20" align="absmiddle" /> ÎÒµÄÕÊ±¾</span>
+        <span style="padding-left:10px; font-size: 16px; float:left;"><img src="" width="20" height="20" align="absmiddle" /> ï¿½Òµï¿½ï¿½Ê±ï¿½</span>
         <ul id="css3menu" style="padding:0px; margin:0px;list-type:none; float:left; margin-left:40px;">
-            <li><a class="active" name="basic" href="javascript:;" title="»ù´¡Êý¾Ý">»ù´¡Êý¾Ý</a></li>
-            <li><a name="point" href="javascript:;" title="»ý·Ö¹ÜÀí">»ý·Ö¹ÜÀí</a></li>
+            <li><a class="active" name="basic" href="javascript:;" title="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a></li>
+            <li><a name="point" href="javascript:;" title="ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½">ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½</a></li>
 
         </ul>
     </div>
     <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
         <div class="footer"></div>
     </div>
-    <div region="west" hide="true" split="true" title="µ¼º½²Ëµ¥" style="width:180px;" id="west">
+    <div region="west" hide="true" split="true" title="ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½" style="width:180px;" id="west">
         <div id='wnav' class="easyui-accordion" fit="true" border="false">
-            <!--  µ¼º½ÄÚÈÝ -->
+            <!--  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -->
             @Html.Action("Menu")
         </div>
 
     </div>
     <div id="mainPanle" region="center" style="background: #eee; overflow-y:hidden">
         <div id="tabs" class="easyui-tabs" fit="true" border="false">
-            <div title="»¶Ó­Ê¹ÓÃ" style="padding:20px;overflow:hidden;" id="home">
+            <div title="ï¿½ï¿½Ó­Ê¹ï¿½ï¿½" style="padding:20px;overflow:hidden;" id="home">
 
                 <h1>Welcome to using The jQuery EasyUI!</h1>
 
@@ -456,16 +458,16 @@
 
 
     <div id="mm" class="easyui-menu" style="width:150px;">
-        <div id="mm-tabupdate">Ë¢ÐÂ</div>
+        <div id="mm-tabupdate">Ë¢ï¿½ï¿½</div>
         @*<div class="menu-sep"></div>*@
-        <div id="mm-tabclose">¹Ø±Õ</div>
-        <div id="mm-tabcloseall">È«²¿¹Ø±Õ</div>
-        <div id="mm-tabcloseother">³ý´ËÖ®ÍâÈ«²¿¹Ø±Õ</div>
+        <div id="mm-tabclose">ï¿½Ø±ï¿½</div>
+        <div id="mm-tabcloseall">È«ï¿½ï¿½ï¿½Ø±ï¿½</div>
+        <div id="mm-tabcloseother">ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½È«ï¿½ï¿½ï¿½Ø±ï¿½</div>
         @*<div class="menu-sep"></div>
-            <div id="mm-tabcloseright">µ±Ç°Ò³ÓÒ²àÈ«²¿¹Ø±Õ</div>
-            <div id="mm-tabcloseleft">µ±Ç°Ò³×ó²àÈ«²¿¹Ø±Õ</div>
+            <div id="mm-tabcloseright">ï¿½ï¿½Ç°Ò³ï¿½Ò²ï¿½È«ï¿½ï¿½ï¿½Ø±ï¿½</div>
+            <div id="mm-tabcloseleft">ï¿½ï¿½Ç°Ò³ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½Ø±ï¿½</div>
             <div class="menu-sep"></div>
-            <div id="mm-exit">ÍË³ö</div>*@
+            <div id="mm-exit">ï¿½Ë³ï¿½</div>*@
     </div>
 
 
