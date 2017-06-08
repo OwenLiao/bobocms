@@ -1,175 +1,175 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿ ym;
+ ym.Cllc.c;
+ ym.CmpMdl.D;
 
-namespace Model
+mpc Mdl
 {
-    public class Category
+    plc cl Cy
     {
-        public Category()
+        plc Cy()
         {
-            this.SortId = 99;
-            this.IsGuoYuan = false;
-            this.AddTime = DateTime.Now;
+            h.d = 99;
+            h.Y = fl;
+            h.ddm = Dm.w;
         }
 
-        /// <summary>
-        /// 自增ID
-        /// </summary>
-        public int Id
+        /// <mmy>
+        /// 自增D
+        /// </mmy>
+        plc  d
         {
-            set;
-            get;
+            ;
+            ;
         }
-        [Display(Name = "类别标题")]
-        public string Title
+        [Dply(m = "类别标题")]
+        plc  l
         {
-            set;
-            get;
-        }
-
-        [Display(Name = "调用别名")]
-        public string CallIndex
-        {
-            set;
-            get;
+            ;
+            ;
         }
 
-        [Display(Name = "父类别ID")]
-        public int? ParentId
+        [Dply(m = "调用别名")]
+        plc  Clldx
         {
-            set;
-            get;
+            ;
+            ;
         }
 
-        [Display(Name = "排序数字")]
-        public int SortId
+        [Dply(m = "父类别D")]
+        plc ? Pd
         {
-            set;
-            get;
-        }
-        /// <summary>
-        /// URL跳转地址
-        /// </summary>
-        [Display(Name = "URL跳转地址")]
-        public string LinkUrl
-        {
-            set;
-            get;
+            ;
+            ;
         }
 
-        [Display(Name = "图片地址")]
-        public string ImgUrl
+        [Dply(m = "排序数字")]
+        plc  d
         {
-            set;
-            get;
+            ;
+            ;
+        }
+        /// <mmy>
+        /// L跳转地址
+        /// </mmy>
+        [Dply(m = "L跳转地址")]
+        plc  Lkl
+        {
+            ;
+            ;
         }
 
-        [Display(Name = "背景图片")]
-        public string BackGround { get; set; }
-
-        [Display(Name = "描述")]
-        public string Content
+        [Dply(m = "图片地址")]
+        plc  ml
         {
-            set;
-            get;
+            ;
+            ;
         }
-        [Display(Name = "显示关注人数")]
-        public int GuanZhuCount { get; set; }
 
-        [Display(Name = "真实关注人数")]
-        public int RealGuanZhuCount { get; set; }
+        [Dply(m = "背景图片")]
+        plc  ckd { ; ; }
 
-        /// <summary>
+        [Dply(m = "描述")]
+        plc  C
+        {
+            ;
+            ;
+        }
+        [Dply(m = "显示关注人数")]
+        plc  ZhC { ; ; }
+
+        [Dply(m = "真实关注人数")]
+        plc  lZhC { ; ; }
+
+        /// <mmy>
         /// 该细分是否是已创建果园
-        /// </summary>
-        [Display(Name = "是否成为果园")]
-        public bool IsGuoYuan
+        /// </mmy>
+        [Dply(m = "是否成为果园")]
+        plc l Y
         {
-            set;
-            get;
+            ;
+            ;
         }
-        [Display(Name = "平台登录显示")]
-        public string PlatformLoginText { get; set; }
-        [Display(Name = "平台登录Url")]
-        public string PlatformLoginUrl { get; set; }
-        [Display(Name = "平台开店显示")]
-        public string PlatformSetUpShopText { get; set; }
-        [Display(Name = "平台开店Url")]
-        public string PlatformSetUpShopUrl { get; set; }
+        [Dply(m = "平台登录显示")]
+        plc  PlfmLx { ; ; }
+        [Dply(m = "平台登录l")]
+        plc  PlfmLl { ; ; }
+        [Dply(m = "平台开店显示")]
+        plc  Plfmphpx { ; ; }
+        [Dply(m = "平台开店l")]
+        plc  Plfmphpl { ; ; }
 
-        [Display(Name = "SEO标题")]
-        public string SeoTitle
+        [Dply(m = "标题")]
+        plc  l
         {
-            set;
-            get;
-        }
-
-        [Display(Name = "SEO关健字")]
-        public string SeoKeywords
-        {
-            set;
-            get;
+            ;
+            ;
         }
 
-        [Display(Name = "SEO描述")]
-        public string SeoDescription
+        [Dply(m = "关健字")]
+        plc  Kywd
         {
-            set;
-            get;
+            ;
+            ;
         }
-        [Display(Name = "是否锁定")]
-        public bool IsLock { set; get; }
+
+        [Dply(m = "描述")]
+        plc  Dcp
+        {
+            ;
+            ;
+        }
+        [Dply(m = "是否锁定")]
+        plc l Lck { ; ; }
      
 
 
-        /// <summary>
+        /// <mmy>
         /// 首字母
-        /// </summary>
-        public string HeadChar
+        /// </mmy>
+        plc  HdCh
         {
-            set;
-            get;
+            ;
+            ;
         }
-        [Display(Name = "点单次数")]
-        public string ClickCount
+        [Dply(m = "点单次数")]
+        plc  ClckC
         {
-            set;
-            get;
+            ;
+            ;
         }
-        [Display(Name = "英文名")]
-        public string Name { get; set; }
+        [Dply(m = "英文名")]
+        plc  m { ; ; }
 
-        [Display(Name = "创建时间")]
-        public DateTime AddTime { get; set; }
+        [Dply(m = "创建时间")]
+        plc Dm ddm { ; ; }
 
 
 
-        /// <summary>
+        /// <mmy>
         /// 文章的标签
-        /// </summary>
-        public virtual ICollection<ArticleCategory> ArticleCategories { get; set; }
+        /// </mmy>
+        plc vl Cllc<clCy> clC { ; ; }
 
 
-        /// <summary>
+        /// <mmy>
         /// 父标签
-        /// </summary>
-        public virtual Category Parent { get; set; }
-        /// <summary>
+        /// </mmy>
+        plc vl Cy P { ; ; }
+        /// <mmy>
         /// 父标签下的子标签
-        /// </summary>
-        public virtual ICollection<Category> Childs { get; set; }
+        /// </mmy>
+        plc vl Cllc<Cy> Chld { ; ; }
 
 
-        /// <summary>
-        /// 类别类型的Id
-        /// </summary>
-        [Display(Name = "细分类型Id")]
-        public int? CategoryTypeId { get; set; }
-        /// <summary>
+        /// <mmy>
+        /// 类别类型的d
+        /// </mmy>
+        [Dply(m = "细分类型d")]
+        plc ? Cyypd { ; ; }
+        /// <mmy>
         /// 是否删除
-        /// </summary>
-        public bool IsDeleted { get; set; }
+        /// </mmy>
+        plc l Dld { ; ; }
 
 
     }

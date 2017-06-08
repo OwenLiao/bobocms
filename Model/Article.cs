@@ -1,270 +1,270 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿ ym;
+ ym.Cllc.c;
+ ym.CmpMdl.D;
 
-namespace Model
+mpc Mdl
 {
-    public class Article
+    plc cl cl
     {
-        public Article()
+        plc cl()
         {
-            this.SortId = 99;
-            this.Click = 0;
-            this.RealClick = 0;
-            this.IsMsg = false;
-            this.IsTop = false;
-            this.IsRed = false;
-            this.IsHot = false;
-            this.IsSlide = false;
-            this.IsLock = false;
-            this.IsBig = false;
-            this.DiggGood = 0;
-            this.DiggBad = 0;
-            this.CommentCount = 0;
-            this.ShareCount = 0;
-            this.AddTime = DateTime.Now;
-            this.ArticleCategories = new List<ArticleCategory>();
+            h.d = 99;
+            h.Clck = 0;
+            h.lClck = 0;
+            h.M = fl;
+            h.p = fl;
+            h.d = fl;
+            h.H = fl;
+            h.ld = fl;
+            h.Lck = fl;
+            h. = fl;
+            h.Dd = 0;
+            h.Dd = 0;
+            h.CmmC = 0;
+            h.hC = 0;
+            h.ddm = Dm.w;
+            h.clC = w L<clCy>();
         }
 
-        /// <summary>
-        /// 自增ID
-        /// </summary>
-        public int Id
+        /// <mmy>
+        /// 自增D
+        /// </mmy>
+        plc  d
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 标题
-        /// </summary>
-        [Display(Name ="标题")]
-        public string Title
+        /// </mmy>
+        [Dply(m ="标题")]
+        plc  l
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 另取标题
-        /// </summary>
-        public string Title1
+        /// </mmy>
+        plc  l1
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 作者
-        /// </summary>
+        /// </mmy>
 
-        public string Author
+        plc  h
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 录入员
-        /// </summary>
-        public string InputAuthor
+        /// </mmy>
+        plc  ph
         {
-            set;
-            get;
+            ;
+            ;
         }
 
-        /// <summary>
+        /// <mmy>
         /// 文章来源
-        /// </summary>
-        public string From
+        /// </mmy>
+        plc  Fm
         {
-            set;
-            get;
+            ;
+            ;
         }
-        [Display(Name ="摘要")]
-        /// <summary>
+        [Dply(m ="摘要")]
+        /// <mmy>
         /// 文章摘要
-        /// </summary>        
-        public string Description
+        /// </mmy>        
+        plc  Dcp
         {
-            set;
-            get;
+            ;
+            ;
         }
-        [Display(Name ="外部链接")]
-        /// <summary>
+        [Dply(m ="外部链接")]
+        /// <mmy>
         /// 外部链接
-        /// </summary>
-        public string LinkUrl
+        /// </mmy>
+        plc  Lkl
         {
-            set;
-            get;
+            ;
+            ;
         }
-        [Display(Name ="封面链接")]
-        /// <summary>
+        [Dply(m ="封面链接")]
+        /// <mmy>
         /// 图片地址
-        /// </summary>
-        public string ImgUrl
+        /// </mmy>
+        plc  ml
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
-        /// SEO标题
-        /// </summary>
-        public string SeoTitle
+        /// <mmy>
+        /// 标题
+        /// </mmy>
+        plc  l
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
-        /// SEO关健字
-        /// </summary>
-        public string SeoKeywords
+        /// <mmy>
+        /// 关健字
+        /// </mmy>
+        plc  Kywd
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
-        /// SEO描述
-        /// </summary>
-        public string SeoDescription
+        /// <mmy>
+        /// 描述
+        /// </mmy>
+        plc  Dcp
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 详细内容
-        /// </summary>
-        public string Content
+        /// </mmy>
+        plc  C
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 排序
-        /// </summary>
-        public int SortId
+        /// </mmy>
+        plc  d
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 显示点击量，后台可以修改
-        /// </summary>
-        public int Click
+        /// </mmy>
+        plc  Clck
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 点击量
-        /// </summary>
-        public int RealClick
+        /// </mmy>
+        plc  lClck
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 是否显示阅读量
-        /// </summary>
-        public bool IsMsg
+        /// </mmy>
+        plc l M
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 是否置顶
-        /// </summary>
-        public bool IsTop
+        /// </mmy>
+        plc l p
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 是否推荐
-        /// </summary>
-        public bool IsRed
+        /// </mmy>
+        plc l d
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 是否热门
-        /// </summary>
-        public bool IsHot
+        /// </mmy>
+        plc l H
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 是否幻灯片
-        /// </summary>
-        public bool IsSlide
+        /// </mmy>
+        plc l ld
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 是否锁定
-        /// </summary>
-        public bool IsLock
+        /// </mmy>
+        plc l Lck
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
-        /// 观察员用户ID
-        /// </summary>
-        public int? UserId
+        /// <mmy>
+        /// 观察员用户D
+        /// </mmy>
+        plc ? d
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 发布时间
-        /// </summary>
-        public DateTime AddTime
+        /// </mmy>
+        plc Dm ddm
         {
-            set;
-            get;
+            ;
+            ;
         }
 
-        /// <summary>
+        /// <mmy>
         /// 顶一下
-        /// </summary>
-        public int DiggGood
+        /// </mmy>
+        plc  Dd
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 踩一下
-        /// </summary>
-        public int DiggBad
+        /// </mmy>
+        plc  Dd
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 分享数
-        /// </summary>
-        public int ShareCount
+        /// </mmy>
+        plc  hC
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 是否头条文章 1是; 0否
-        /// </summary>
+        /// </mmy>
 
-        public bool IsBig
+        plc l 
         {
-            set;
-            get;
+            ;
+            ;
         }
-        /// <summary>
+        /// <mmy>
         /// 是否首页显示 0:不显示 1显示
-        /// </summary>
-        public bool IsShow
+        /// </mmy>
+        plc l hw
         {
-            set;
-            get;
+            ;
+            ;
         }
 
       
@@ -272,34 +272,34 @@ namespace Model
     
 
   
-        /// <summary>
+        /// <mmy>
         ///评论数
-        /// </summary>
-        public int CommentCount
+        /// </mmy>
+        plc  CmmC
         {
-            set;
-            get;
+            ;
+            ;
         }
    
-        /// <summary>
-        ///所属专题Id
-        /// </summary>
-        public int? ThemeId { get; set; }
+        /// <mmy>
+        ///所属专题d
+        /// </mmy>
+        plc ? hmd { ; ; }
 
-        /// <summary>
-        /// 是否加入RSS
-        /// </summary>
-        public bool IsAddRSS { get; set; }
+        /// <mmy>
+        /// 是否加入
+        /// </mmy>
+        plc l dd { ; ; }
 
        
 
        
  
 
-        /// <summary>
+        /// <mmy>
         /// 文章的标签
-        /// </summary>
-        public virtual ICollection<ArticleCategory> ArticleCategories { get; set; }
+        /// </mmy>
+        plc vl Cllc<clCy> clC { ; ; }
 
 
     }

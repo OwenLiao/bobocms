@@ -9,13 +9,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-
-
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link href="~/admin/easyui/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="~/admin/easyui/themes/icon.css" rel="stylesheet" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
-    @Styles.Render("~/Scripts/easyui/themes/icon.css")
-    @Styles.Render("~/Scripts/easyui/themes/bootstrap/easyui.css")
-    @Scripts.Render("~/bundles/jquery", "~/bundles/easyui")
-    @Styles.Render("~/Areas/Admin/Content/Css/base.css")
+    <script src="~/admin/easyui/jquery.easyui.min.js"></script>
 </head>
 <body class="easyui-layout">
 
@@ -36,7 +34,7 @@
                 InitLeftMenu();
             });
 
-            // �����˵��󶨳�ʼ��
+            // 导航菜单绑定初始化
             $("#wnav").accordion({
                 animate: false
             });
@@ -70,9 +68,9 @@
                 menulist += '<ul>';
                 $.each(sm.menus, function (j, o) {
                     menulist += '<li><div><a ref="' + o.menuid + '" href="#" rel="'
-                            + o.url + '" ><span class="icon ' + o.icon
-                            + '" >&nbsp;</span><span class="nav">' + o.menuname
-                            + '</span></a></div></li> ';
+                        + o.url + '" ><span class="icon ' + o.icon
+                        + '" >&nbsp;</span><span class="nav">' + o.menuname
+                        + '</span></a></div></li> ';
                 });
                 menulist += '</ul>';
 
@@ -90,7 +88,7 @@
 
         }
 
-        // ��ʼ�����
+        // 初始化左侧
         function InitLeftMenu() {
 
             hoverMenuItem();
@@ -110,7 +108,7 @@
         }
 
         /**
-         * �˵������Hover
+         * 菜单项鼠标Hover
          */
         function hoverMenuItem() {
             $(".easyui-accordion").find('a').hover(function () {
@@ -120,7 +118,7 @@
             });
         }
 
-        // ��ȡ��ർ����ͼ��
+        // 获取左侧导航的图标
         function getIcon(menuid) {
             var icon = 'icon ';
             $.each(_menus, function (i, n) {
@@ -157,12 +155,12 @@
         }
 
         function tabClose() {
-            /* ˫���ر�TABѡ� */
+            /* 双击关闭TAB选项卡 */
             $(".tabs-inner").dblclick(function () {
                 var subtitle = $(this).children(".tabs-closable").text();
                 $('#tabs').tabs('close', subtitle);
             });
-            /* Ϊѡ����Ҽ� */
+            /* 为选项卡绑定右键 */
             $(".tabs-inner").bind('contextmenu', function (e) {
                 $('#mm').menu('show', {
                     left: e.pageX,
@@ -176,9 +174,9 @@
                 return false;
             });
         }
-        // ���Ҽ��˵��¼�
+        // 绑定右键菜单事件
         function tabCloseEven() {
-            // ˢ��
+            // 刷新
             $('#mm-tabupdate').click(function () {
                 var currTab = $('#tabs').tabs('getSelected');
                 var url = $(currTab.panel('options').content).attr('src');
@@ -189,29 +187,29 @@
                     }
                 });
             });
-            // �رյ�ǰ
+            // 关闭当前
             $('#mm-tabclose').click(function () {
                 var currtab_title = $('#mm').data("currtab");
                 $('#tabs').tabs('close', currtab_title);
             });
-            // ȫ���ر�
+            // 全部关闭
             $('#mm-tabcloseall').click(function () {
                 $('.tabs-inner span').each(function (i, n) {
                     var t = $(n).text();
                     $('#tabs').tabs('close', t);
                 });
             });
-            // �رճ���ǰ֮���TAB
+            // 关闭除当前之外的TAB
             $('#mm-tabcloseother').click(function () {
                 $('#mm-tabcloseright').click();
                 $('#mm-tabcloseleft').click();
             });
-            // �رյ�ǰ�Ҳ��TAB
+            // 关闭当前右侧的TAB
             $('#mm-tabcloseright').click(function () {
                 var nextall = $('.tabs-selected').nextAll();
                 if (nextall.length == 0) {
-                    // msgShow('ϵͳ��ʾ','���û����~~','error');
-                    alert('���û����~~');
+                    // msgShow('系统提示','后边没有啦~~','error');
+                    alert('后边没有啦~~');
                     return false;
                 }
                 nextall.each(function (i, n) {
@@ -220,11 +218,11 @@
                 });
                 return false;
             });
-            // �رյ�ǰ����TAB
+            // 关闭当前左侧的TAB
             $('#mm-tabcloseleft').click(function () {
                 var prevall = $('.tabs-selected').prevAll();
                 if (prevall.length == 0) {
-                    alert('��ͷ�ˣ�ǰ��û����~~');
+                    alert('到头了，前边没有啦~~');
                     return false;
                 }
                 prevall.each(function (i, n) {
@@ -234,18 +232,18 @@
                 return false;
             });
 
-            // �˳�
+            // 退出
             $("#mm-exit").click(function () {
                 $('#mm').menu('hide');
             });
         }
 
-        // ������Ϣ���� title:���� msgString:��ʾ��Ϣ msgType:��Ϣ���� [error,info,question,warning]
+        // 弹出信息窗口 title:标题 msgString:提示信息 msgType:信息类型 [error,info,question,warning]
         function msgShow(title, msgString, msgType) {
             $.messager.alert(title, msgString, msgType);
         }
 
-        // ����ʱ��
+        // 本地时钟
         function clockon() {
             var now = new Date();
             var year = now.getFullYear(); // getFullYear getYear
@@ -267,11 +265,11 @@
                 minu = "0" + minu;
             if (sec < 10)
                 sec = "0" + sec;
-            var arr_week = new Array("������", "����һ", "���ڶ�", "������", "������", "������", "������");
+            var arr_week = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
             week = arr_week[day];
             var time = "";
-            time = year + "��" + month + "��" + date + "��" + " " + hour + ":" + minu
-                    + ":" + sec + " " + week;
+            time = year + "年" + month + "月" + date + "日" + " " + hour + ":" + minu
+                + ":" + sec + " " + week;
 
             $("#bgclock").html(time);
 
@@ -287,45 +285,45 @@
             basic: [{
                 "menuid": "10",
                 "icon": "icon-sys",
-                "menuname": "��������",
+                "menuname": "基础数据",
                 "menus": [{
                     "menuid": "111",
-                    "menuname": "��������1",
+                    "menuname": "基础数据1",
                     "icon": "icon-nav",
                     "url": "#"
                 }, {
                     "menuid": "113",
-                    "menuname": "��������12",
+                    "menuname": "基础数据12",
                     "icon": "icon-nav",
                     "url": "#"
                 }, {
                     "menuid": "115",
-                    "menuname": "��������13",
+                    "menuname": "基础数据13",
                     "icon": "icon-nav",
                     "url": "#"
                 }, {
                     "menuid": "117",
-                    "menuname": "��������14",
+                    "menuname": "基础数据14",
                     "icon": "icon-nav",
                     "url": "#"
                 }, {
                     "menuid": "119",
-                    "menuname": "��������15",
+                    "menuname": "基础数据15",
                     "icon": "icon-nav",
                     "url": "em/enterpriseChannelObtend.action"
                 }]
             }, {
                 "menuid": "20",
                 "icon": "icon-sys",
-                "menuname": "����һ",
+                "menuname": "测试一",
                 "menus": [{
                     "menuid": "211",
-                    "menuname": "����һ11",
+                    "menuname": "测试一11",
                     "icon": "icon-nav",
                     "url": "#"
                 }, {
                     "menuid": "213",
-                    "menuname": "����һ22",
+                    "menuname": "测试一22",
                     "icon": "icon-nav",
                     "url": "#"
                 }]
@@ -333,25 +331,25 @@
             point: [{
                 "menuid": "20",
                 "icon": "icon-sys",
-                "menuname": "���ֹ���",
+                "menuname": "积分管理",
                 "menus": [{
                     "menuid": "211",
-                    "menuname": "������;",
+                    "menuname": "积分用途",
                     "icon": "icon-nav",
                     "url": "#"
                 }, {
                     "menuid": "213",
-                    "menuname": "���ֵ���",
+                    "menuname": "积分调整",
                     "icon": "icon-nav",
                     "url": "#"
                 }]
 
             }]
         };
-        //���õ�¼����
+        //设置登录窗口
         function openPwd() {
             $('#w').window({
-                title: '�޸�����',
+                title: '修改密码',
                 width: 300,
                 modal: true,
                 shadow: true,
@@ -360,34 +358,34 @@
                 resizable: false
             });
         }
-        //�رյ�¼����
+        //关闭登录窗口
         function closePwd() {
             $('#w').window('close');
         }
 
 
 
-        //�޸�����
+        //修改密码
         function serverLogin() {
             var $newpass = $('#txtNewPass');
             var $rePass = $('#txtRePass');
 
             if ($newpass.val() == '') {
-                msgShow('ϵͳ��ʾ', '���������룡', 'warning');
+                msgShow('系统提示', '请输入密码！', 'warning');
                 return false;
             }
             if ($rePass.val() == '') {
-                msgShow('ϵͳ��ʾ', '����һ���������룡', 'warning');
+                msgShow('系统提示', '请在一次输入密码！', 'warning');
                 return false;
             }
 
             if ($newpass.val() != $rePass.val()) {
-                msgShow('ϵͳ��ʾ', '�������벻һ��������������', 'warning');
+                msgShow('系统提示', '两次密码不一至！请重新输入', 'warning');
                 return false;
             }
 
             $.post('/ajax/editpassword.ashx?newpass=' + $newpass.val(), function (msg) {
-                msgShow('ϵͳ��ʾ', '��ϲ�������޸ĳɹ���<br>����������Ϊ��' + msg, 'info');
+                msgShow('系统提示', '恭喜，密码修改成功！<br>您的新密码为：' + msg, 'info');
                 $newpass.val('');
                 $rePass.val('');
                 close();
@@ -410,7 +408,7 @@
             $('#btnCancel').click(function () { closePwd(); })
 
             $('#loginOut').click(function () {
-                $.messager.confirm('ϵͳ��ʾ', '��ȷ��Ҫ�˳����ε�¼��?', function (r) {
+                $.messager.confirm('系统提示', '您确定要退出本次登录吗?', function (r) {
 
                     if (r) {
                         location.href = '/ajax/loginout.ashx';
@@ -425,28 +423,28 @@
 
 
     <div region="north" split="true" border="false" style="height:60px;background:#B3DFDA;padding:10px">
-        <span style="float:right; padding-right:20px;" class="head">��ӭ ������ <a href="#" id="editpass">�޸�����</a> <a href="#" id="loginOut">��ȫ�˳�</a></span>
+        <span style="float:right; padding-right:20px;" class="head">欢迎 疯狂秀才 <a href="#" id="editpass">修改密码</a> <a href="#" id="loginOut">安全退出</a></span>
 
-        <span style="padding-left:10px; font-size: 16px; float:left;"><img src="" width="20" height="20" align="absmiddle" /> �ҵ��ʱ�</span>
+        <span style="padding-left:10px; font-size: 16px; float:left;"><img src="" width="20" height="20" align="absmiddle" /> 我的帐本</span>
         <ul id="css3menu" style="padding:0px; margin:0px;list-type:none; float:left; margin-left:40px;">
-            <li><a class="active" name="basic" href="javascript:;" title="��������">��������</a></li>
-            <li><a name="point" href="javascript:;" title="���ֹ���">���ֹ���</a></li>
+            <li><a class="active" name="basic" href="javascript:;" title="基础数据">基础数据</a></li>
+            <li><a name="point" href="javascript:;" title="积分管理">积分管理</a></li>
 
         </ul>
     </div>
     <div region="south" split="true" style="height: 30px; background: #D2E0F2; ">
         <div class="footer"></div>
     </div>
-    <div region="west" hide="true" split="true" title="�����˵�" style="width:180px;" id="west">
+    <div region="west" hide="true" split="true" title="导航菜单" style="width:180px;" id="west">
         <div id='wnav' class="easyui-accordion" fit="true" border="false">
-            <!--  �������� -->
-            @Html.Action("Menu")
+            <!--  导航内容 -->
+            @*@Html.Action("Menu")*@
         </div>
 
     </div>
     <div id="mainPanle" region="center" style="background: #eee; overflow-y:hidden">
         <div id="tabs" class="easyui-tabs" fit="true" border="false">
-            <div title="��ӭʹ��" style="padding:20px;overflow:hidden;" id="home">
+            <div title="欢迎使用" style="padding:20px;overflow:hidden;" id="home">
 
                 <h1>Welcome to using The jQuery EasyUI!</h1>
 
@@ -458,16 +456,16 @@
 
 
     <div id="mm" class="easyui-menu" style="width:150px;">
-        <div id="mm-tabupdate">ˢ��</div>
+        <div id="mm-tabupdate">刷新</div>
         @*<div class="menu-sep"></div>*@
-        <div id="mm-tabclose">�ر�</div>
-        <div id="mm-tabcloseall">ȫ���ر�</div>
-        <div id="mm-tabcloseother">����֮��ȫ���ر�</div>
+        <div id="mm-tabclose">关闭</div>
+        <div id="mm-tabcloseall">全部关闭</div>
+        <div id="mm-tabcloseother">除此之外全部关闭</div>
         @*<div class="menu-sep"></div>
-            <div id="mm-tabcloseright">��ǰҳ�Ҳ�ȫ���ر�</div>
-            <div id="mm-tabcloseleft">��ǰҳ���ȫ���ر�</div>
+            <div id="mm-tabcloseright">当前页右侧全部关闭</div>
+            <div id="mm-tabcloseleft">当前页左侧全部关闭</div>
             <div class="menu-sep"></div>
-            <div id="mm-exit">�˳�</div>*@
+            <div id="mm-exit">退出</div>*@
     </div>
 
 
