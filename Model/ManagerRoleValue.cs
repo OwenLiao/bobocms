@@ -37,10 +37,10 @@ namespace Model
         /// </summary>
      
         public string ActionType { get; set; }
-        [JsonIgnoreAttribute]
+        
         public virtual ManagerRole ManagerRole { get; set; }
      
-        [JsonIgnoreAttribute]
+        
         public virtual SysChannel SysChannel { get; set; }
     }
 }

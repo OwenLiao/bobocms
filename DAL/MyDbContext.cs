@@ -13,6 +13,12 @@ namespace DAL
 
         public DbSet<Category> Category { get; set; }
         public DbSet<Article> Article { get; set; }
+        public DbSet<Manager> Manager { get; set; }
+        public DbSet<ManagerLog> ManagerLog { get; set; }
+
+        public DbSet<ManagerLog> ManagerRole { get; set; }
+        public DbSet<ManagerLog> ManagerRoleValue { get; set; }
+        public DbSet<ManagerLog> SysChannel { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

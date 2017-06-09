@@ -1,13 +1,13 @@
-﻿mpc Mdl
+﻿namespace Model
 {
-    plc cl clCy
+    public class ArticleCategory
     {
-        plc  cld { ; ; }
-        plc vl cl cl { ; ; }
-        plc  Cyd { ; ; }
-        plc vl Cy Cy { ; ; }
+        public int ArticleId { get; set; }
+        public virtual Article Article { get; set; }
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
     }
 
-    //plc cl DlclCy : clCy { }
-   // plc cl LclCy : clCy { }
+    //public class DetailArticleCategory : ArticleCategory { }
+    // public class ListArticleCategory : ArticleCategory { }
 }

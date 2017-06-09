@@ -31,10 +31,10 @@ namespace Model
         /// </summary>
 
         public Nullable<byte> RoleType { get; set; }
-        [JsonIgnoreAttribute]
+        
         public virtual ICollection<Manager> Managers { get; set; }
 
-        [JsonIgnoreAttribute]
+        
         public virtual ICollection<ManagerRoleValue> ManagerRoleValues { get; set; }
     }
 }

@@ -1,21 +1,21 @@
-﻿ ym;
- ym.Cllc.c;
- ym.x;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-mpc Mdl
+namespace Model
 {
-   plc cl Cf
+    public class SiteConfiguration
     {
-        plc  H { ; ; }
+        public string Host { get; set; }
 
-        plc  l { ; ; }
+        public string Title { get; set; }
 
-        plc  Dcp { ; ; }
+        public string Description { get; set; }
 
-        plc [] dmL { ; ; }
+        public string[] AdminUserList { get; set; }
 
-        plc l llw { ; ; }
+        public bool AllowRegister { get; set; }
 
-        plc l Vfy { ; ; }
+        public bool VerifyRegisterUser { get; set; }
     }
 }

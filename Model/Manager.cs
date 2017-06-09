@@ -77,7 +77,7 @@ namespace Model
 
         public Nullable<System.DateTime> AddTime { get; set; }
 
-        [JsonIgnoreAttribute]
+        
         public virtual ManagerRole ManagerRole { get; set; }
     }
 }
