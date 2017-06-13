@@ -12,7 +12,7 @@ namespace Web.Controllers
     public class HomeController : Controller
     {
  
-        DAL.ICategoryService bllCate;
+         ICategoryService bllCate;
         public HomeController( MyDbContext _context, DAL.ICategoryService _bllCate) //, BLL.BaseService<Category> _bllCat
         {
             bllCate = _bllCate;
