@@ -1,0 +1,78 @@
+﻿@model Model.manager_role
+@using (Html.BeginForm(Model == null ? "Add" : "Edit", "ManagerRole"))
+{ @Html.AntiForgeryToken()
+    <div class="form-horizontal" role="form">
+        <h4>@ViewBag.TitleMessage</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.role_name, new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.role_name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.role_name)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.role_type, new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.DropDownListFor(model => model.role_type, new List<SelectListItem> {
+                new SelectListItem { Text = "超级用户", Value = "1"},
+                new SelectListItem { Text = "系统用户", Value = "2"} }, "--请选择类型--")
+                @Html.ValidationMessageFor(model => model.role_type)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("权限", new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10" style=" width:430px;">
+                <div class="easyui-panel" style="padding:5px">
+                    <ul id="tree" class="easyui-tree"></ul>
+                </div>
+                <script type="text/javascript">
+                    @{string actionUrl = Url.Action("JsonRight") + (Model == null? "" : "/" + Model.id);}
+                    $(function () {
+                        $('#tree').tree({
+                            url: '@actionUrl',
+                            checkbox: true,
+                            onClick: function (node) {
+                                //alert(node.text);
+                            }
+                        })
+                    })
+                    function getChecked() {
+                        var nodes1 = $('#tree').tree('getChecked', 'indeterminate');
+                        var nodes = $('#tree').tree('getChecked');
+                        var s = '';
+                        var v = '';
+                        for (var i = 0; i < nodes1.length; i++) {
+                            if (s != '') s += ',';
+                            if (v != '') v += ',';
+                            s += nodes1[i].text;
+                            v += nodes1[i].id;
+                        }
+                        for (var i = 0; i < nodes.length; i++) {
+                            if (s != '') s += ',';
+                            if (v != '') v += ',';
+                            s += nodes[i].text;
+                            v += nodes[i].id;
+                        }
+                        //alert(s)
+                        //alert(v)
+                        $('#txtVals').val(v);
+                    }
+                </script>
+            </div>
+            <input type="hidden" name="txtVals" id="txtVals" value="" />
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="保存" onclick="getChecked()" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+

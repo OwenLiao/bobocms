@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Data;
+//using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -77,47 +77,47 @@ namespace Common
         /// </summary> 
         /// <param name="dt">数据表</param> 
         /// <returns>哈希表数组</returns> 
-        public static List<Dictionary<string, object>> DataTableToList(DataTable dt)
-        {
-            List<Dictionary<string, object>> list
-                 = new List<Dictionary<string, object>>();
+        //public static List<Dictionary<string, object>> DataTableToList(DataTable dt)
+        //{
+        //    List<Dictionary<string, object>> list
+        //         = new List<Dictionary<string, object>>();
 
-            foreach (DataRow dr in dt.Rows)
-            {
-                Dictionary<string, object> dic = new Dictionary<string, object>();
-                foreach (DataColumn dc in dt.Columns)
-                {
-                    dic.Add(dc.ColumnName, dr[dc.ColumnName]);
-                }
-                list.Add(dic);
-            }
-            return list;
-        }
+        //    foreach (DataRow dr in dt.Rows)
+        //    {
+        //        Dictionary<string, object> dic = new Dictionary<string, object>();
+        //        foreach (DataColumn dc in dt.Columns)
+        //        {
+        //            dic.Add(dc.ColumnName, dr[dc.ColumnName]);
+        //        }
+        //        list.Add(dic);
+        //    }
+        //    return list;
+        //}
 
-        /// <summary> 
-        /// 数据集转键值对数组字典 
-        /// </summary> 
-        /// <param name="dataSet">数据集</param> 
-        /// <returns>键值对数组字典</returns> 
-        public static Dictionary<string, List<Dictionary<string, object>>> DataSetToDic(DataSet ds)
-        {
-            Dictionary<string, List<Dictionary<string, object>>> result = new Dictionary<string, List<Dictionary<string, object>>>();
+        ///// <summary> 
+        ///// 数据集转键值对数组字典 
+        ///// </summary> 
+        ///// <param name="dataSet">数据集</param> 
+        ///// <returns>键值对数组字典</returns> 
+        //public static Dictionary<string, List<Dictionary<string, object>>> DataSetToDic(DataSet ds)
+        //{
+        //    Dictionary<string, List<Dictionary<string, object>>> result = new Dictionary<string, List<Dictionary<string, object>>>();
 
-            foreach (DataTable dt in ds.Tables)
-                result.Add(dt.TableName, DataTableToList(dt));
+        //    foreach (DataTable dt in ds.Tables)
+        //        result.Add(dt.TableName, DataTableToList(dt));
 
-            return result;
-        }
+        //    return result;
+        //}
 
-        /// <summary> 
-        /// 数据表转JSON 
-        /// </summary> 
-        /// <param name="dataTable">数据表</param> 
-        /// <returns>JSON字符串</returns> 
-        public static string DataTableToJSON(DataTable dt)
-        {
-            return ObjectToJSON(DataTableToList(dt));
-        }
+        ///// <summary> 
+        ///// 数据表转JSON 
+        ///// </summary> 
+        ///// <param name="dataTable">数据表</param> 
+        ///// <returns>JSON字符串</returns> 
+        //public static string DataTableToJSON(DataTable dt)
+        //{
+        //    return ObjectToJSON(DataTableToList(dt));
+        //}
 
         
 

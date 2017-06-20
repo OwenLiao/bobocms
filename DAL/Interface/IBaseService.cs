@@ -52,6 +52,14 @@ namespace DAL
         /// <returns>是否成功</returns>
         bool Delete(T entity, bool isSave = true);
 
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns>是否成功</returns>
+        bool Delete(int id, bool isSave = true);
+
+
 
         /// <summary>
         /// 保存

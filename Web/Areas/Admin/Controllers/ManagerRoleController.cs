@@ -6,23 +6,33 @@ using Microsoft.AspNetCore.Mvc;
 using DAL;
 using Admin.Model;
 using Common;
+using Model;
 
 namespace Web.Areas.Admin.Controllers
 {
+
+    [Area("Admin")]
     public class ManagerRoleController : Controller
     {
         #region define
 
-        IManagerRoleService bll { get; set; }
+        IManagerRoleService bll;
 
-        ISysChannelService bllSysChannel { get; set; }
+        ISysChannelService bllSysChannel;
 
-        IManagerRoleValueService bllManagerRoleValue { get; set; }
-        public ManagerRoleController(IManagerRoleService _bll, ISysChannelService _bllSysChannel, IManagerRoleValueService _bllManagerRoleValue)
+        IManagerRoleValueService bllManagerRoleValue;
+
+
+        ICategoryService bllCate;
+        //public ManagerRoleController(IManagerRoleService _bll, ISysChannelService _bllSysChannel, IManagerRoleValueService _bllManagerRoleValue)
+        //{
+        //    bll = _bll;
+        //    bllSysChannel = _bllSysChannel;
+        //    bllManagerRoleValue = _bllManagerRoleValue;
+        //}
+        public ManagerRoleController(ICategoryService _bll)
         {
-            bll = _bll;
-            bllSysChannel = _bllSysChannel;
-            bllManagerRoleValue = _bllManagerRoleValue;
+            bllCate = _bll;
         }
         #endregion
 
@@ -59,10 +69,10 @@ namespace Web.Areas.Admin.Controllers
                     bool b = false;
                     if (id != null)
                     {
-                        if (bll.Exists(Convert.ToInt32(id), item1.Id))
-                        {
-                            b = true;
-                        }
+                        //if (bll.Exists(Convert.ToInt32(id), item1.Id))
+                        //{
+                        //    b = true;
+                        //}
                     }
                     m1.Checked = b;
                     m.children.Add(m1);
@@ -82,18 +92,18 @@ namespace Web.Areas.Admin.Controllers
         /// 列表
         /// </summary>
         /// <returns></returns>
-        public ActionResult JsonList(QueryModel model)
-        {
-            int pageIndex = int.Parse(Request["page"]);
-            int pageSize = int.Parse(Request["rows"]);
-            int _total;
-            var _rows = bll.GetList(pageSize, pageIndex, model, "id", false, out _total);
-            var returnJson = new { total = _total, rows = _rows.ToList() };
-            return Content(JsonHelper.ObjectToJSON(returnJson));
+        //public ActionResult JsonList(QueryModel model)
+        //{
+        //    int pageIndex = int.Parse(Request["page"]);
+        //    int pageSize = int.Parse(Request["rows"]);
+        //    int _total;
+        //    var _rows = bll.GetList(pageSize, pageIndex, model, "id", false, out _total);
+        //    var returnJson = new { total = _total, rows = _rows.ToList() };
+        //    return Content(JsonHelper.ObjectToJSON(returnJson));
 
-        }
+        //}
 
-        [ValidateInput(false)]
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Add(ManagerRole model)
@@ -106,7 +116,7 @@ namespace Web.Areas.Admin.Controllers
                     model = bll.Add(model);
                     if (model.Id > 0)
                     {
-                        foreach (var str in MyRequest.GetString("txtVals").Split(','))//权限
+                        foreach (var str in HttpContext.Items.Where(q=>q.Key.ToString()== "txtVals"))//权限//MyRequest.GetString("txtVals").Split(',')
                         {
                             ManagerRoleValue m = new ManagerRoleValue();
                             m.channelId = Convert.ToInt32(str);
@@ -123,20 +133,20 @@ namespace Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(FormCollection collection)
+        public ActionResult Edit(ManagerRole model)
         {
-            int _id = int.Parse(ControllerContext.RouteData.GetRequiredString("id"));
-            var model = bll.GetModel(_id);
-            TryUpdateModel(model, collection.AllKeys);
+           // int _id = int.Parse(ControllerContext.RouteData.GetRequiredString("id"));
+        //    var model = bll.GetModel(_id);
+//TryUpdateModel(model, collection.AllKeys);
 
             if (ModelState.IsValid)
             {
 
                 var oldRight = bllManagerRoleValue.GetList(q => q.roleId == model.Id);//之前有的权限
                 //添加新增的权限
-                foreach (var str in MyRequest.GetString("txtVals").Split(','))
+                string strVals = HttpContext.Items.Where(q => q.Key.ToString() == "txtVals").FirstOrDefault().ToString();
+                foreach (var str in strVals.Split(','))
                 {
 
                     ManagerRoleValue m = new ManagerRoleValue();
@@ -150,7 +160,7 @@ namespace Web.Areas.Admin.Controllers
                 //删除去掉的权限
                 foreach (var item in oldRight)
                 {
-                    string strAll = "," + MyRequest.GetString("txtVals") + ",";
+                    string strAll = "," + strVals + ",";
                     if (!strAll.Contains("," + item.channelId.ToString() + ","))
                     {
                         bllManagerRoleValue.Delete(item.Id);

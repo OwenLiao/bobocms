@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "";
+}
+<div id="toolbar">
+    <div>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add('添加角色','ManagerRole')">添加</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="eidt('修改角色', 'ManagerRole')">修改</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true" onclick="$('#data_list').datagrid('reload');">刷新</a>
+    </div>
+    <div class="form-inline">
+
+    </div>
+
+</div>
+<table id="data_list"></table>
+<script type="text/javascript">
+    $("#data_list").datagrid({
+        loadMsg: '加载中……',
+        pagination: true,
+        pageSize: 15,
+        pageList: [15, 30, 45],
+        url: '@Url.Action("JsonList", "ManagerRole")',
+        columns: [[
+            { field: 'id', title: 'ID', checkbox: true },
+            { field: 'role_name', title: '角色名称' },
+            { field: 'role_type', title: '角色类型', formatter: function (value, row, index) { return value == 1 ? "超级用户" : "系统用户" } }
+        ]],
+        toolbar: '#toolbar',
+        idField: 'id',
+        onDblClickRow: function (rowIndex, rowData) { window.parent.addTab("修改角色", "@Url.Action("Edit", "ManagerRole")/" + rowData.id, "icon-page"); }
+    });
+</script>
+

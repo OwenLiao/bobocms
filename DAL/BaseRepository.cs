@@ -51,10 +51,15 @@ namespace DAL
 
         public bool Delete(T entity, bool isSave = true)
         {
-            //nContext.Set<T>().Attach(entity);
-            //nContext.Entry<T>(entity).State = System.Data.Entity.EntityState.Deleted;
-            //return isSave ? nContext.SaveChanges() > 0 : true;
-            return false;
+            nContext.Set<T>().Attach(entity);
+            nContext.Entry<T>(entity).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            return isSave ? nContext.SaveChanges() > 0 : true;
+        }
+
+
+        public bool Delete(int Id, bool isSave = true)
+        {
+          return Delete(  GetModel(Id));
         }
 
         public bool Exist(Expression<Func<T, bool>> anyLambda)
