@@ -1,0 +1,24 @@
+﻿@model Model.MessageModel
+
+<div id="add_success" class="easyui-panel" title="修改成功" style="width:500px;text-align:center;">
+    <dl>
+        <dt>@Model.title 修改成功</dt>
+        <dd> <a id="btn_close" href="#" class="easyui-linkbutton">关闭</a></dd>
+    </dl>
+</div>
+<style>
+    .panel {
+        margin: auto;
+    }
+</style>
+<script type="text/javascript">
+
+    $(function () {
+        //关闭
+        $("#btn_close").click(function () {
+            parent.$("#tabs").tabs('close', '@Model.tabName');
+        });
+        //居中
+        $(".panel").css({ "margin-top": ($(window).height() - $(".panel").height()) / 2 });
+    });
+</script>

@@ -36,11 +36,16 @@ namespace Web
 
             // Repositories
      
-            services.AddScoped<ICategoryService,CategoryService>();
- 
+            services.AddScoped<ICategoryService,CategoryService>()
+                    .AddScoped<IManagerRoleService, ManagerRoleService>()
+                    .AddScoped<ISysChannelService, SysChannelService>()
+                    .AddScoped<IManagerRoleValueService, ManagerRoleValueService>()
+                   // .AddScoped<ICategoryService, CategoryService>()
+                    .AddScoped<IArticleService, ArticleService>();
+
 
             // Automapper Configuration
-          //  AutoMapperConfiguration.Configure();
+            //  AutoMapperConfiguration.Configure();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

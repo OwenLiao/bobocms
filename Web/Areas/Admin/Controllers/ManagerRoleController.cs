@@ -22,18 +22,13 @@ namespace Web.Areas.Admin.Controllers
 
         IManagerRoleValueService bllManagerRoleValue;
 
-
-        ICategoryService bllCate;
-        //public ManagerRoleController(IManagerRoleService _bll, ISysChannelService _bllSysChannel, IManagerRoleValueService _bllManagerRoleValue)
-        //{
-        //    bll = _bll;
-        //    bllSysChannel = _bllSysChannel;
-        //    bllManagerRoleValue = _bllManagerRoleValue;
-        //}
-        public ManagerRoleController(ICategoryService _bll)
+        public ManagerRoleController(IManagerRoleService _bll, ISysChannelService _bllSysChannel, IManagerRoleValueService _bllManagerRoleValue)
         {
-            bllCate = _bll;
+            bll = _bll;
+            bllSysChannel = _bllSysChannel;
+            bllManagerRoleValue = _bllManagerRoleValue;
         }
+
         #endregion
 
 
@@ -69,10 +64,10 @@ namespace Web.Areas.Admin.Controllers
                     bool b = false;
                     if (id != null)
                     {
-                        //if (bll.Exists(Convert.ToInt32(id), item1.Id))
-                        //{
-                        //    b = true;
-                        //}
+                        if (bll.Exists(Convert.ToInt32(id), item1.Id))
+                        {
+                            b = true;
+                        }
                     }
                     m1.Checked = b;
                     m.children.Add(m1);

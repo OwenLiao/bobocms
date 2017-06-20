@@ -23,17 +23,17 @@ namespace DAL
         /// <summary>
         /// 检查是否有权限
         /// </summary>
-        //bool Exists(int role_id, int channel_id);
+        bool Exists(int role_id, int channel_id);
 
-        /////// <summary>
-        /////// 检查是否有权限
-        /////// </summary>
-        //bool Exists(int role_id, int channel_id, string action_type);
+        ///// <summary>
+        ///// 检查是否有权限
+        ///// </summary>
+        bool Exists(int role_id, int channel_id, string action_type);
 
-        /////// <summary>
-        /////// 检查是否有权限
-        /////// </summary>
-        //bool Exists(int role_id, string channel_name, string action_type);
+        ///// <summary>
+        ///// 检查是否有权限
+        ///// </summary>
+        bool Exists(int role_id, string channel_name, string action_type);
     }
     public interface IManagerRoleValueService : IBaseService<ManagerRoleValue> { }
     
