@@ -30,7 +30,7 @@ namespace Model
         ///
         /// </summary>
 
-        public Nullable<byte> RoleType { get; set; }
+        public Nullable<int> RoleType { get; set; }
         
         public virtual ICollection<Manager> Managers { get; set; }
 

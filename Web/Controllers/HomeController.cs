@@ -19,8 +19,10 @@ namespace Web.Controllers
         }
         public   IActionResult Index()
         {
-            
-            return View( bllCate.GetList(q=>q.Id>0));
+            int _total = 0;
+            var list = bllCate.GetList(20, 1, q => q.Id >= 0, "Id", false, out _total).ToList();
+            ViewBag.total = _total;
+            return View( list); 
         }
 
 

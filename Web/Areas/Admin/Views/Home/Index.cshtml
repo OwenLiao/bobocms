@@ -438,7 +438,35 @@
     <div region="west" hide="true" split="true" title="导航菜单" style="width:180px;" id="west">
         <div id='wnav' class="easyui-accordion" fit="true" border="false">
             <!--  导航内容 -->
-            @*@Html.Action("Menu")*@
+           
+            @{var list = (List<Model.SysChannel>)Model;}
+            @foreach (var item in list.Where(q => q.parentId == null))
+            {
+                <div class="panel" style="width: 173px;">
+                    <div class="panel-header accordion-header" style="height: 16px; width: 163px;">
+
+                        <div class="panel-title panel-with-icon">@item.Title</div>
+                        <div class="panel-icon icon icon-sys"></div>
+                        <div class="panel-tool">
+                            <a href="javascript:void(0)" class="panel-tool-collapse panel-tool-expand" style="display: none;"></a>
+                        </div>
+                    </div>
+                    <div title="" class="panel-body accordion-body" style="width: 173px;">
+                        <ul>
+                            @foreach (var item1 in list.Where(q => q.parentId == item.Id))
+                {
+                                <li>
+                                    <div class=""><a ref="@item1.Id" href="#" rel="@item1.LinkUrl"><span class="icon icon-nav">&nbsp;</span><span class="nav">@item1.Title</span></a></div>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+
+                </div>
+            }
+
+
         </div>
 
     </div>

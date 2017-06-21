@@ -5,7 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Routing;
 using DAL;
-using MySQL.Data.EntityFrameworkCore.Extensions;
+using Microsoft.EntityFrameworkCore;
+
+
+using System;
+
 
 namespace Web
 {
@@ -32,7 +36,8 @@ namespace Web
 
             // Add framework services.
             services.AddDbContext<MyDbContext>(options =>
-                options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+          
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
             // Repositories
      
@@ -46,6 +51,13 @@ namespace Web
 
             // Automapper Configuration
             //  AutoMapperConfiguration.Configure();
+
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.CookieHttpOnly = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +77,8 @@ namespace Web
             }
 
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

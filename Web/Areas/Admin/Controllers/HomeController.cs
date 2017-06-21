@@ -17,14 +17,12 @@ namespace Web.Areas.Admin.Controllers
         IManagerService bllMan;
         public IActionResult Index()
         {
-            return View();
-        }
-        public ActionResult Menu()
-        {
+
             string user_name = HttpContext.Session.GetString(MyKeys.SESSION_ADMIN_INFO);
             //获取该管理员的菜单
             List<SysChannel> channels = bllMan.GetMenu(user_name);
-            return PartialView(channels);
+            return View(channels);
         }
+        
     }
 }   

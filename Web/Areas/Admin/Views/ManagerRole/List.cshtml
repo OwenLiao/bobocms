@@ -23,7 +23,7 @@
         url: '@Url.Action("JsonList", "ManagerRole")',
         columns: [[
             { field: 'id', title: 'ID', checkbox: true },
-            { field: 'role_name', title: '角色名称' },
+            { field: 'RoleName', title: '角色名称' },
             { field: 'role_type', title: '角色类型', formatter: function (value, row, index) { return value == 1 ? "超级用户" : "系统用户" } }
         ]],
         toolbar: '#toolbar',

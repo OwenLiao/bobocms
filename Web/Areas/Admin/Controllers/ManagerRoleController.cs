@@ -87,16 +87,17 @@ namespace Web.Areas.Admin.Controllers
         /// ап╠М
         /// </summary>
         /// <returns></returns>
-        //public ActionResult JsonList(QueryModel model)
-        //{
-        //    int pageIndex = int.Parse(Request["page"]);
-        //    int pageSize = int.Parse(Request["rows"]);
-        //    int _total;
-        //    var _rows = bll.GetList(pageSize, pageIndex, model, "id", false, out _total);
-        //    var returnJson = new { total = _total, rows = _rows.ToList() };
-        //    return Content(JsonHelper.ObjectToJSON(returnJson));
+        public ActionResult JsonList(int page,int rows)   //QueryModel model
+        {
+            int pageIndex = page;// int.Parse(Request["page"]);
+            int pageSize = rows; //int.Parse(Request["rows"]);
+            int _total;
+            //  var _rows = bll.GetList(pageSize, pageIndex, model, "id", false, out _total);
+            var _rows = bll.GetList(pageSize, pageIndex,q=>q.Id>0, "Id", false, out _total);
+            var returnJson = new { total = _total, rows = _rows.ToList() };
+            return Content(JsonHelper.ObjectToJSON(returnJson));
 
-        //}
+        }
 
 
         [HttpPost]
