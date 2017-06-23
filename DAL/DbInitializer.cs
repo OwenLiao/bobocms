@@ -8,9 +8,10 @@ namespace DAL
 {
     public class DbInitializer
     {
-        public static void Initialize(MyDbContext context)
+        public static void Initialize(IServiceProvider service)
         {
-            context.Database.EnsureCreated();
+            var db = service.GetService<MyDbContext>();
+           // context.Database.EnsureCreated();
 
             // Look for any students.
             if (context.Category.Any())
@@ -27,7 +28,20 @@ namespace DAL
             {
                 context.Category.Add(s);
             }
+
+            if (!context.Manager.Any())
+            {
+                Manager m = new Manager
+                {
+                    UserName = "admin",
+                    UserPwd = Common.DESEncrypt.Md5("admin888"),
+                    roleId = 1
+                };
+                context.Manager.Add(m);
+            }
             context.SaveChanges();
+
+
         }
     }
 }

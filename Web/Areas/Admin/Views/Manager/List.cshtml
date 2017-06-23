@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "";
+    }
+<div id="toolbar">
+    <div>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="add('添加管理员','Manager')">添加</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="eidt('修改管理员', 'Manager')">修改</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="del()">删除</a>
+        <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload',plain:true" onclick="$('#data_list').datagrid('reload');">刷新</a>
+    </div>
+    <div class="form-inline">
+        <label>管理员帐号</label>
+        @Html.TextBox("user_name").ForSearch(QueryMethod.Like)
+        <a href="#" id="btn_search" data-options="iconCls:'icon-search'" class="easyui-linkbutton">查询</a>
+    </div>
+
+</div>
+<table id="data_list"></table>
+<script type="text/javascript">
+    $("#data_list").datagrid({
+        loadMsg: '加载中……',
+        pagination: true,
+        pageSize: 15,
+        pageList: [15, 30, 45],
+        url: '@Url.Action("JsonList","Manager")',
+        columns: [[
+            { field: 'id', title: 'ID', checkbox: true },
+            { field: 'user_name', title: '帐号' },
+            { field: 'real_name', title: '姓名' },
+            { field: 'role_id', title: '角色', formatter: function (value, row, index) { return new Object(row["manager_role"]).role_name; } },
+            { field: 'add_time', title: '添加时间' },
+            { field: 'is_lock', title: '状态', formatter: function (value, row, index) { return value == 0 ? "启用" : "禁用" } }
+        ]],
+        toolbar: '#toolbar',
+        idField: 'id',
+        onDblClickRow: function (rowIndex, rowData) { window.parent.addTab("修改管理员", "@Url.Action("Edit", "Manager")/" + rowData.id, "icon-page"); }
+    });
+    //查找
+    $("#btn_search").click(function () {
+        $("#data_list").datagrid('load', {
+            "[Like]user_name": $("#user_name").val()
+        });
+    });
+</script>
+

@@ -17,8 +17,10 @@ namespace Web.Areas.Admin.Controllers
            string username=  HttpContext.Session.GetString(MyKeys.SESSION_ADMIN_INFO);
             if (string.IsNullOrEmpty(username))
             {
-                HttpContext.Response.Redirect("Home/Login");
+
+                context.Result = RedirectToAction("Login","Manager");// new RedirectResult("/Login/Index",);
                 return;
+               // RedirectToAction("Login", "Home");
             }
 
             base.OnActionExecuting(context);

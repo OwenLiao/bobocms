@@ -1,0 +1,62 @@
+﻿@model Model.Manager
+@using (Html.BeginForm(Model == null ? "Add" : "Edit", "Manager"))
+{ @Html.AntiForgeryToken()
+    <div class="form-horizontal" role="form">
+        <h4>@ViewBag.TitleMessage</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.roleId, new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @{string def = Model == null ? "" : Model.roleId.ToString();}
+                @Html.DropDownListFor(model => model.roleId, new SelectList(new BLL.manager_role().GetList(q => q.id > 0), "id", "role_name"), "---请选择---")
+                @Html.ValidationMessageFor(model => model.roleId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.is_lock, new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                启用 @Html.RadioButtonFor(model => model.is_lock, "启用", new { Checked = "checked", @Value = "0" }) &nbsp;&nbsp;&nbsp;
+                禁用 @Html.RadioButtonFor(model => model.is_lock, "禁用", new { @Value = "1" })
+                @Html.ValidationMessageFor(model => model.is_lock)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.user_name, new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.user_name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.user_name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.user_pwd, new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.PasswordFor(model => model.user_pwd, new { @class = "form-control", @Value = Model == null ? "" : Model.user_pwd })
+
+                @Html.ValidationMessageFor(model => model.user_pwd)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.real_name, new { @class = "control-label col-sm-2" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.real_name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.real_name)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="保存" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+

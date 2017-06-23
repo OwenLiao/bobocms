@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 
 using System;
-
+using Microsoft.AspNetCore.Http;
 
 namespace Web
 {
@@ -34,6 +34,9 @@ namespace Web
             // Add framework services.
             services.AddMvc();
 
+
+            services.AddAuthorization();
+
             // Add framework services.
             services.AddDbContext<MyDbContext>(options =>
           
@@ -45,7 +48,7 @@ namespace Web
                     .AddScoped<IManagerRoleService, ManagerRoleService>()
                     .AddScoped<ISysChannelService, SysChannelService>()
                     .AddScoped<IManagerRoleValueService, ManagerRoleValueService>()
-                   // .AddScoped<ICategoryService, CategoryService>()
+                    .AddScoped<IManagerService, ManagerService>()
                     .AddScoped<IArticleService, ArticleService>();
 
 
@@ -80,6 +83,7 @@ namespace Web
 
             app.UseSession();
 
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -89,6 +93,9 @@ namespace Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            DbInitializer.Initialize(app.ApplicationServices);
         }
     }
 }

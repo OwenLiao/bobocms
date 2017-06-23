@@ -12,7 +12,7 @@ using Model;
 namespace Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         IManagerService bllMan;
         public IActionResult Index()
@@ -21,7 +21,9 @@ namespace Web.Areas.Admin.Controllers
             string user_name = HttpContext.Session.GetString(MyKeys.SESSION_ADMIN_INFO);
             //获取该管理员的菜单
             List<SysChannel> channels = bllMan.GetMenu(user_name);
-            return View(channels);
+                return View(channels);
+           
+          
         }
         
     }
