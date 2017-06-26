@@ -15,6 +15,10 @@ namespace Web.Areas.Admin.Controllers
     public class HomeController : BaseController
     {
         IManagerService bllMan;
+        public HomeController(IManagerService _bllMan)
+        {
+            bllMan = _bllMan;
+        }
         public IActionResult Index()
         {
 

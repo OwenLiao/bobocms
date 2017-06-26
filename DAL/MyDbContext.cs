@@ -8,7 +8,7 @@ namespace DAL
     {
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
-               
+
         }
 
         public DbSet<Category> Category { get; set; }
@@ -22,8 +22,9 @@ namespace DAL
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-modelBuilder.Entity<Category>().ToTable("Category").HasOne(q => q.Parent).WithMany(q => q.Childs).HasForeignKey(q => q.ParentId);
-            modelBuilder.Entity<Article>().ToTable("Article");  
+            modelBuilder.Entity<Category>().ToTable("Category").HasOne(q => q.Parent).WithMany(q => q.Childs).HasForeignKey(q => q.ParentId);
+            modelBuilder.Entity<Article>().ToTable("Article");
+            modelBuilder.Entity<Manager>().HasOne(q => q.ManagerRole).WithMany(q => q.Managers).HasForeignKey(q => q.roleId);
 
             //文章详情标签多对多关系
             modelBuilder.Entity<ArticleCategory>().HasKey(q => new { q.ArticleId, q.CategoryId });
