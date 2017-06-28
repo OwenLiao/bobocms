@@ -10,12 +10,13 @@ namespace DAL
     public class ManagerService : BaseRepository<Manager>, IManagerService
     {
         ISysChannelService bllSys;
-
-        public ManagerService(MyDbContext context, ISysChannelService _bllSys)
+        IManagerRoleService bllManRol;
+        public ManagerService(MyDbContext context, ISysChannelService _bllSys, IManagerRoleService _bllManRol)
             : base(context)
        {
 
             bllSys = _bllSys;
+           bllManRol = _bllManRol;
         }
 
         /// <summary>
@@ -39,7 +40,12 @@ namespace DAL
         {
             var manager = GetModel(userName);
             List<SysChannel> channels = new List<SysChannel>();
-            if (manager.ManagerRole.RoleType == 1)//超级管理员
+            // if (manager.ManagerRole.RoleType == 1)//超级管理员
+
+
+             if (bllManRol.GetModel(q=>q.Id==manager.roleId).RoleType == 1)//超级管理员
+           // if (nContext.Manager.FirstOrDefault().ManagerRole.RoleType==1)
+     
             {
                 var list = bllSys.GetList(q => q.Id > 0, "SortId", true);
                 foreach (var item in list)

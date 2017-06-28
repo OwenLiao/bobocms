@@ -38,9 +38,32 @@ namespace DAL
                 };
                 context.Manager.Add(m);
             }
+            #region 后台菜单
+            AddSys("资讯管理","zixunguanli","","");
+            AddSys("文章管理", "zixunguanli", "Article/List", "资讯管理");
+
+            #endregion
             context.SaveChanges();
 
 
+             void AddSys(string Title, string Name, string LinkUrl,string partentTitle)
+            {
+                if (context.SysChannel.FirstOrDefault(q => q.Title == Title) == null)
+                {
+                    var sys = new SysChannel();
+                    sys.Title = Title;
+                    sys.Name = Name;
+                    sys.LinkUrl = LinkUrl;
+                    var sysParent = context.SysChannel.FirstOrDefault(q => q.Title == partentTitle);
+                    if (sysParent!=null)
+                    {
+                        sys.parentId = sysParent.Id;
+                    }
+                    context.SysChannel.Add(sys);
+                }
+            }
+
         }
+      
     }
 }

@@ -16,9 +16,9 @@ namespace DAL
         public DbSet<Manager> Manager { get; set; }
         public DbSet<ManagerLog> ManagerLog { get; set; }
 
-        public DbSet<ManagerLog> ManagerRole { get; set; }
-        public DbSet<ManagerLog> ManagerRoleValue { get; set; }
-        public DbSet<ManagerLog> SysChannel { get; set; }
+        public DbSet<ManagerRole> ManagerRole { get; set; }
+        public DbSet<ManagerRoleValue> ManagerRoleValue { get; set; }
+        public DbSet<SysChannel> SysChannel { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

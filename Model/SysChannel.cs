@@ -12,7 +12,8 @@ namespace Model
         public SysChannel()
         {
             this.ManagerRoleValues = new List<ManagerRoleValue>();
-            this.parentId = 0;
+           // this.parentId = 0;
+            this.SortId = 99;
         }
 
 

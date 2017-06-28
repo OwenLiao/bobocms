@@ -14,9 +14,11 @@ namespace Web.Areas.Admin.Controllers
     public class ManagerController : Controller
     {
         IManagerService bll;
-        public ManagerController(IManagerService _bll)
+        DAL.MyDbContext context;
+        public ManagerController(IManagerService _bll, DAL.MyDbContext _context)
         {
             bll = _bll;
+            context = _context;
         }
         public IActionResult Index()
         {

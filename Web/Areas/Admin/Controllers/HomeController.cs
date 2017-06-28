@@ -19,12 +19,13 @@ namespace Web.Areas.Admin.Controllers
         {
             bllMan = _bllMan;
         }
+
         public IActionResult Index()
         {
 
             string user_name = HttpContext.Session.GetString(MyKeys.SESSION_ADMIN_INFO);
             //获取该管理员的菜单
-            List<SysChannel> channels = bllMan.GetMenu(user_name);
+            List<SysChannel> channels =bllMan.GetMenu(user_name);
                 return View(channels);
            
           
