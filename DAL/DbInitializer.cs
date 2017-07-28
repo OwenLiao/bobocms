@@ -40,7 +40,11 @@ namespace DAL
             }
             #region 后台菜单
             AddSys("资讯管理","zixunguanli","","");
-            AddSys("文章管理", "zixunguanli", "Article/List", "资讯管理");
+            AddSys("文章管理", "article", "Article/List", "资讯管理");
+            AddSys("分类管理", "article", "Category/List", "资讯管理");
+            AddSys("系统管理", "xitongguangli", "", "");
+            AddSys("频道管理", "syschannel", "Syschannel/List", "系统管理");
+            AddSys("参数设置", "sys_config", "Syschannel/List", "系统管理");
 
             #endregion
             context.SaveChanges();

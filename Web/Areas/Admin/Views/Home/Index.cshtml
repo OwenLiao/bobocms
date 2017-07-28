@@ -9,10 +9,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    <link href="~/admin/easyui/themes/bootstrap/easyui.css" rel="stylesheet" />
     <link href="~/admin/easyui/themes/icon.css" rel="stylesheet" />
+    <link href="~/admin/easyui/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="~/admin/css/base.css" rel="stylesheet" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/admin/easyui/jquery.easyui.min.js"></script>
 </head>
 <body class="easyui-layout">
@@ -93,7 +95,7 @@
 
             hoverMenuItem();
 
-            $('#wnav li a').live('click', function () {
+            $('#wnav').on('click','a', function () {
                 var tabTitle = $(this).children('.nav').text();
 
                 var url = $(this).attr("rel");
